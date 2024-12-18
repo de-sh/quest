@@ -1,1212 +1,1254 @@
-[
-  {
-    "query": "SELECT COUNT(*) FROM hits;",
-    "response": [{ "count(*)": 99997497 }]
-  },
-  {
-    "query": "SELECT COUNT(*) FROM hits WHERE \"AdvEngineID\" <> 0;",
-    "response": [{ "count(*)": 630500 }]
-  },
-  {
-    "query": "SELECT SUM(\"AdvEngineID\"), COUNT(*), AVG(\"ResolutionWidth\") FROM hits;",
-    "response": [
-      {
-        "sum(AdvEngineID)": 7280088,
-        "count(*)": 99997497,
-        "avg(ResolutionWidth)": 1513.4879349030107
-      }
-    ]
-  },
-  {
-    "query": "SELECT AVG(\"UserID\") FROM hits;",
-    "response": [{ "avg(UserID)": 2.5289530297897144e18 }]
-  },
-  {
-    "query": "SELECT COUNT(DISTINCT \"UserID\") FROM hits;",
-    "response": [{ "count(DISTINCT \"UserID\")": 17630976 }]
-  },
-  {
-    "query": "SELECT COUNT(DISTINCT \"SearchPhrase\") FROM hits;",
-    "response": [{ "count(DISTINCT hits.SearchPhrase)": 6019103 }]
-  },
-  {
-    "query": "SELECT MIN(\"EventDate\"::DATE), MAX(\"EventDate\"::DATE) FROM hits;",
-    "response": [
-      {
-        "min(hits.EventDate)": "2013-07-02",
-        "max(hits.EventDate)": "2013-07-31"
-      }
-    ]
-  },
-  {
-    "query": "SELECT \"AdvEngineID\", COUNT(*) FROM hits WHERE \"AdvEngineID\" <> 0 GROUP BY \"AdvEngineID\" ORDER BY COUNT(*) DESC;",
-    "response": [
-      { "AdvEngineID": 2, "count(*)": 404602 },
-      { "AdvEngineID": 27, "count(*)": 113167 },
-      { "AdvEngineID": 13, "count(*)": 45631 },
-      { "AdvEngineID": 45, "count(*)": 38960 },
-      { "AdvEngineID": 44, "count(*)": 9730 },
-      { "AdvEngineID": 3, "count(*)": 6896 },
-      { "AdvEngineID": 62, "count(*)": 5266 },
-      { "AdvEngineID": 52, "count(*)": 3554 },
-      { "AdvEngineID": 50, "count(*)": 938 },
-      { "AdvEngineID": 28, "count(*)": 836 },
-      { "AdvEngineID": 53, "count(*)": 350 },
-      { "AdvEngineID": 25, "count(*)": 343 },
-      { "AdvEngineID": 61, "count(*)": 158 },
-      { "AdvEngineID": 21, "count(*)": 38 },
-      { "AdvEngineID": 42, "count(*)": 20 },
-      { "AdvEngineID": 16, "count(*)": 7 },
-      { "AdvEngineID": 7, "count(*)": 3 },
-      { "AdvEngineID": 22, "count(*)": 1 }
-    ]
-  },
-  {
-    "query": "SELECT \"RegionID\", COUNT(DISTINCT \"UserID\") AS u FROM hits GROUP BY \"RegionID\" ORDER BY u DESC LIMIT 10;",
-    "response": [
-      { "RegionID": 229, "u": 2845673 },
-      { "RegionID": 2, "u": 1081016 },
-      { "RegionID": 208, "u": 831676 },
-      { "RegionID": 169, "u": 604583 },
-      { "RegionID": 184, "u": 322661 },
-      { "RegionID": 158, "u": 307152 },
-      { "RegionID": 34, "u": 299479 },
-      { "RegionID": 55, "u": 286525 },
-      { "RegionID": 107, "u": 272448 },
-      { "RegionID": 42, "u": 243181 }
-    ]
-  },
-  {
-    "query": "SELECT \"RegionID\", SUM(\"AdvEngineID\"), COUNT(*) AS c, AVG(\"ResolutionWidth\"), COUNT(DISTINCT \"UserID\") FROM hits GROUP BY \"RegionID\" ORDER BY c DESC LIMIT 10;",
-    "response": [
-      {
-        "RegionID": 229,
-        "sum(hits.AdvEngineID)": 2077656,
-        "c": 18295832,
-        "avg(hits.ResolutionWidth)": 1506.085243130785,
-        "count(Distinct hits.UserID)": 2845673
-      },
-      {
-        "RegionID": 2,
-        "sum(hits.AdvEngineID)": 441662,
-        "c": 6687587,
-        "avg(hits.ResolutionWidth)": 1479.8386542111527,
-        "count(Distinct hits.UserID)": 1081016
-      },
-      {
-        "RegionID": 208,
-        "sum(hits.AdvEngineID)": 285925,
-        "c": 4261812,
-        "avg(hits.ResolutionWidth)": 1285.2593246722286,
-        "count(Distinct hits.UserID)": 831676
-      },
-      {
-        "RegionID": 169,
-        "sum(hits.AdvEngineID)": 100887,
-        "c": 3320229,
-        "avg(hits.ResolutionWidth)": 1465.9073732564832,
-        "count(Distinct hits.UserID)": 604583
-      },
-      {
-        "RegionID": 32,
-        "sum(hits.AdvEngineID)": 81498,
-        "c": 1843518,
-        "avg(hits.ResolutionWidth)": 1538.0376568061718,
-        "count(Distinct hits.UserID)": 216010
-      },
-      {
-        "RegionID": 34,
-        "sum(hits.AdvEngineID)": 161779,
-        "c": 1792369,
-        "avg(hits.ResolutionWidth)": 1548.360152401654,
-        "count(Distinct hits.UserID)": 299479
-      },
-      {
-        "RegionID": 184,
-        "sum(hits.AdvEngineID)": 55526,
-        "c": 1755192,
-        "avg(hits.ResolutionWidth)": 1506.8082967561384,
-        "count(Distinct hits.UserID)": 322661
-      },
-      {
-        "RegionID": 42,
-        "sum(hits.AdvEngineID)": 108820,
-        "c": 1542717,
-        "avg(hits.ResolutionWidth)": 1587.1085208758313,
-        "count(Distinct hits.UserID)": 243181
-      },
-      {
-        "RegionID": 107,
-        "sum(hits.AdvEngineID)": 120470,
-        "c": 1516690,
-        "avg(hits.ResolutionWidth)": 1548.6028970982863,
-        "count(Distinct hits.UserID)": 272448
-      },
-      {
-        "RegionID": 51,
-        "sum(hits.AdvEngineID)": 98212,
-        "c": 1435578,
-        "avg(hits.ResolutionWidth)": 1579.8860354505293,
-        "count(Distinct hits.UserID)": 211505
-      }
-    ]
-  },
-  {
-    "query": "SELECT \"MobilePhoneModel\", COUNT(DISTINCT \"UserID\") AS u FROM hits WHERE \"MobilePhoneModel\" <> '' GROUP BY \"MobilePhoneModel\" ORDER BY u DESC LIMIT 10;",
-    "response": [
-      { "MobilePhoneModel": "iPad", "u": 1090347 },
-      { "MobilePhoneModel": "iPhone", "u": 45758 },
-      { "MobilePhoneModel": "A500", "u": 16046 },
-      { "MobilePhoneModel": "N8-00", "u": 5565 },
-      { "MobilePhoneModel": "iPho", "u": 3300 },
-      { "MobilePhoneModel": "ONE TOUCH 6030A", "u": 2759 },
-      { "MobilePhoneModel": "GT-P7300B", "u": 1907 },
-      { "MobilePhoneModel": "3110000", "u": 1871 },
-      { "MobilePhoneModel": "GT-I9500", "u": 1598 },
-      { "MobilePhoneModel": "eagle75", "u": 1492 }
-    ]
-  },
-  {
-    "query": "SELECT \"MobilePhone\", \"MobilePhoneModel\", COUNT(DISTINCT \"UserID\") AS u FROM hits WHERE \"MobilePhoneModel\" <> '' GROUP BY \"MobilePhone\", \"MobilePhoneModel\" ORDER BY u DESC LIMIT 10;",
-    "response": [
-      { "MobilePhone": 1, "MobilePhoneModel": "iPad", "u": 931038 },
-      { "MobilePhone": 5, "MobilePhoneModel": "iPad", "u": 48385 },
-      { "MobilePhone": 6, "MobilePhoneModel": "iPad", "u": 29710 },
-      { "MobilePhone": 7, "MobilePhoneModel": "iPad", "u": 28391 },
-      { "MobilePhone": 118, "MobilePhoneModel": "A500", "u": 16005 },
-      { "MobilePhone": 6, "MobilePhoneModel": "iPhone", "u": 14516 },
-      { "MobilePhone": 26, "MobilePhoneModel": "iPhone", "u": 13566 },
-      { "MobilePhone": 10, "MobilePhoneModel": "iPad", "u": 11433 },
-      { "MobilePhone": 32, "MobilePhoneModel": "iPad", "u": 9503 },
-      { "MobilePhone": 13, "MobilePhoneModel": "iPad", "u": 9417 }
-    ]
-  },
-  {
-    "query": "SELECT \"SearchPhrase\", COUNT(*) AS c FROM hits WHERE \"SearchPhrase\" <> '' GROUP BY \"SearchPhrase\" ORDER BY c DESC LIMIT 10;",
-    "response": [
-      { "SearchPhrase": "карелки", "c": 70263 },
-      { "SearchPhrase": "албатрутдин", "c": 34675 },
-      { "SearchPhrase": "смотреть онлайн", "c": 24580 },
-      { "SearchPhrase": "смотреть онлайн бесплатно", "c": 21647 },
-      { "SearchPhrase": "смотреть", "c": 19707 },
-      { "SearchPhrase": "мангу в зарабей грама", "c": 19195 },
-      { "SearchPhrase": "дружке помещение", "c": 17284 },
-      { "SearchPhrase": "galaxy table", "c": 16746 },
-      { "SearchPhrase": "экзоидные", "c": 16620 },
-      { "SearchPhrase": "сколько мытищи", "c": 12317 }
-    ]
-  },
-  {
-    "query": "SELECT \"SearchPhrase\", COUNT(DISTINCT \"UserID\") AS u FROM hits WHERE \"SearchPhrase\" <> '' GROUP BY \"SearchPhrase\" ORDER BY u DESC LIMIT 10;",
-    "response": [
-      { "SearchPhrase": "карелки", "c": 70263 },
-      { "SearchPhrase": "албатрутдин", "c": 34675 },
-      { "SearchPhrase": "смотреть онлайн", "c": 24580 },
-      { "SearchPhrase": "смотреть онлайн бесплатно", "c": 21647 },
-      { "SearchPhrase": "смотреть", "c": 19707 },
-      { "SearchPhrase": "мангу в зарабей грама", "c": 19195 },
-      { "SearchPhrase": "дружке помещение", "c": 17284 },
-      { "SearchPhrase": "galaxy table", "c": 16746 },
-      { "SearchPhrase": "экзоидные", "c": 16620 },
-      { "SearchPhrase": "сколько мытищи", "c": 12317 }
-    ]
-  },
-  {
-    "query": "SELECT \"SearchEngineID\", \"SearchPhrase\", COUNT(*) AS c FROM hits WHERE \"SearchPhrase\" <> '' GROUP BY \"SearchEngineID\", \"SearchPhrase\" ORDER BY c DESC LIMIT 10;",
-    "response": [
-      { "SearchEngineID": 2, "SearchPhrase": "карелки", "c": 46258 },
-      {
-        "SearchEngineID": 2,
-        "SearchPhrase": "мангу в зарабей грама",
-        "c": 18871
-      },
-      { "SearchEngineID": 2, "SearchPhrase": "смотреть онлайн", "c": 16905 },
-      { "SearchEngineID": 3, "SearchPhrase": "албатрутдин", "c": 16748 },
-      {
-        "SearchEngineID": 2,
-        "SearchPhrase": "смотреть онлайн бесплатно",
-        "c": 14909
-      },
-      { "SearchEngineID": 2, "SearchPhrase": "албатрутдин", "c": 13716 },
-      { "SearchEngineID": 2, "SearchPhrase": "экзоидные", "c": 13414 },
-      { "SearchEngineID": 2, "SearchPhrase": "смотреть", "c": 13108 },
-      { "SearchEngineID": 3, "SearchPhrase": "карелки", "c": 12815 },
-      { "SearchEngineID": 2, "SearchPhrase": "дружке помещение", "c": 11946 }
-    ]
-  },
-  {
-    "query": "SELECT \"UserID\", COUNT(*) FROM hits GROUP BY \"UserID\" ORDER BY COUNT(*) DESC LIMIT 10;",
-    "response": [
-      { "UserID": 1313338681122956954, "count(*)": 29097 },
-      { "UserID": 1907779576417363396, "count(*)": 25333 },
-      { "UserID": 2305303682471783379, "count(*)": 10597 },
-      { "UserID": 7982623143712728547, "count(*)": 7584 },
-      { "UserID": 6018350421959114808, "count(*)": 6678 },
-      { "UserID": 7280399273658728997, "count(*)": 6411 },
-      { "UserID": 1090981537032625727, "count(*)": 6197 },
-      { "UserID": 5730251990344211405, "count(*)": 6019 },
-      { "UserID": 835157184735512989, "count(*)": 5211 },
-      { "UserID": 770542365400669095, "count(*)": 4906 }
-    ]
-  },
-  {
-    "query": "SELECT \"UserID\", \"SearchPhrase\", COUNT(*) FROM hits GROUP BY \"UserID\", \"SearchPhrase\" ORDER BY COUNT(*) DESC LIMIT 10;",
-    "response": [
-      { "UserID": 1313338681122956954, "SearchPhrase": "", "count(*)": 29097 },
-      { "UserID": 1907779576417363396, "SearchPhrase": "", "count(*)": 25333 },
-      { "UserID": 2305303682471783379, "SearchPhrase": "", "count(*)": 10597 },
-      { "UserID": 7982623143712728547, "SearchPhrase": "", "count(*)": 6669 },
-      { "UserID": 7280399273658728997, "SearchPhrase": "", "count(*)": 6408 },
-      { "UserID": 1090981537032625727, "SearchPhrase": "", "count(*)": 6196 },
-      { "UserID": 5730251990344211405, "SearchPhrase": "", "count(*)": 6019 },
-      { "UserID": 6018350421959114808, "SearchPhrase": "", "count(*)": 5990 },
-      { "UserID": 835157184735512989, "SearchPhrase": "", "count(*)": 5209 },
-      { "UserID": 770542365400669095, "SearchPhrase": "", "count(*)": 4906 }
-    ]
-  },
-  {
-    "query": "SELECT \"UserID\", \"SearchPhrase\", COUNT(*) FROM hits GROUP BY \"UserID\", \"SearchPhrase\" LIMIT 10;",
-    "response": []
-  },
-  {
-    "query": "SELECT \"UserID\", extract(minute FROM to_timestamp_seconds(\"EventTime\")) AS m, \"SearchPhrase\", COUNT(*) FROM hits GROUP BY \"UserID\", m, \"SearchPhrase\" ORDER BY COUNT(*) DESC LIMIT 10;",
-    "response": []
-  },
-  {
-    "query": "SELECT \"UserID\" FROM hits WHERE \"UserID\" = 435090932899640449;",
-    "response": [
-      { "UserID": 435090932899640449 },
-      { "UserID": 435090932899640449 },
-      { "UserID": 435090932899640449 },
-      { "UserID": 435090932899640449 }
-    ]
-  },
-  {
-    "query": "SELECT COUNT(*) FROM hits WHERE \"URL\" LIKE '%google%';",
-    "response": [{ "count(*)": 15911 }]
-  },
-  {
-    "query": "SELECT \"SearchPhrase\", MIN(\"URL\"), COUNT(*) AS c FROM hits WHERE \"URL\" LIKE '%google%' AND \"SearchPhrase\" <> '' GROUP BY \"SearchPhrase\" ORDER BY c DESC LIMIT 10;",
-    "response": [
-      {
-        "SearchPhrase": "прокур горбуши",
-        "min(hits.URL)": "http://smeshariki.ru/googleTBR%26ad",
-        "c": 60
-      },
-      {
-        "SearchPhrase": "римском качественны for cry",
-        "min(hits.URL)": "http:%2F%2Fwwww.googlead&aktional",
-        "c": 24
-      },
-      {
-        "SearchPhrase": "стоит похуден",
-        "min(hits.URL)": "http://smeshariki.ru/index.ua/doc/22229/googlead%26aktion=2&input_bdsmpeople.ru/real-estate=0&state=2013070519381",
-        "c": 23
-      },
-      {
-        "SearchPhrase": "испанч боб новости дейская",
-        "min(hits.URL)": "http://smeshariki.ru/recipes/show/6840872&trafkey=6d0fc12c54059/loukhaAUXI&where=all&filter/Mitsubishi/google",
-        "c": 21
-      },
-      {
-        "SearchPhrase": "прокур готовки видеоэндоменя",
-        "min(hits.URL)": "http://smeshariki.ru/googleTBR%26ad",
-        "c": 14
-      },
-      {
-        "SearchPhrase": "прокур гипоаллеры",
-        "min(hits.URL)": "http://smeshariki.ru/googleTBR%26ad",
-        "c": 11
-      },
-      {
-        "SearchPhrase": "камедицинск автомобильних условодки на в крем",
-        "min(hits.URL)": "http://video.yandex.php?com=google.ru/arts/searchAutoSearch",
-        "c": 9
-      },
-      {
-        "SearchPhrase": "универ 11.6/1366x768/4096mb ddressary of thing",
-        "min(hits.URL)": "http://smeshariki.ru/index.ua/syllanet.ru/business/hotels.turizm.ru/igooglead%26ar_sliceid%3D1216629/0/&&puid2=15&lo=http",
-        "c": 8
-      },
-      {
-        "SearchPhrase": "вспомню о названы монстэр",
-        "min(hits.URL)": "http://tienskaia-moda-zhienskaia-obl.irr.ru/ch/google-c-38208",
-        "c": 7
-      },
-      {
-        "SearchPhrase": "купить трудовані резюме мертный дина кабинский лежит заднее устан",
-        "min(hits.URL)": "http://video.yandex.php?com=google.ru/arts/searchAutoSearch",
-        "c": 7
-      }
-    ]
-  },
-  {
-    "query": "SELECT \"SearchPhrase\", MIN(\"URL\"), MIN(\"Title\"), COUNT(*) AS c, COUNT(DISTINCT \"UserID\") FROM hits WHERE \"Title\" LIKE '%Google%' AND \"URL\" NOT LIKE '%.google.%' AND \"SearchPhrase\" <> '' GROUP BY \"SearchPhrase\" ORDER BY c DESC LIMIT 10;",
-    "response": [
-      {
-        "SearchPhrase": "винки медведь смотреть фильмы 2013 смотреть",
-        "min(hits.URL)": "http://smeshariki.ru/a-folder-4/#page-3.2.1; WOW64; Edition=1&input_action=2011/page_type=profiles/88436/currency",
-        "min(hits.Title)": "видеорегионалу Google",
-        "c": 801,
-        "count(distinct hits.UserID)": 600
-      },
-      {
-        "SearchPhrase": "секретарь оверка все серии порт",
-        "min(hits.URL)": "http://kinopoisk.ru/a-albums_scroll_to_auto_id=227&option/vacancies/liver.ru/cgi-bin/click.cgi%3Fsid%3D158197%26ad",
-        "min(hits.Title)": "@дневники Google Player 1.2.5 л,",
-        "c": 214,
-        "count(distinct hits.UserID)": 182
-      },
-      {
-        "SearchPhrase": "винки медведь смотреть фильмы чеческия",
-        "min(hits.URL)": "http://smeshariki.ru/a-folder-4/#page-3.2.1; WOW64; Edition=1&input_action=2013-topy%2Fproduct_price_ot=&price",
-        "min(hits.Title)": "видеорегионалу Gooddock hotmail Google на толстовая комфорталенны Berlingo по давлений",
-        "c": 138,
-        "count(distinct hits.UserID)": 121
-      },
-      {
-        "SearchPhrase": "игры для дер блич",
-        "min(hits.URL)": "http://kinopoisk.ru/a-albums_scroll_to_auto_id=363064472354&lb_id=1559843",
-        "min(hits.Title)": "Легко на купить автозаврам телась Google Anaissage_599-61 «Оверлок колепный рецепт: Твери",
-        "c": 114,
-        "count(distinct hits.UserID)": 106
-      },
-      {
-        "SearchPhrase": "винки медведь смотреть объятный ветерин",
-        "min(hits.URL)": "http://smeshariki.ru/a-folder-4/#page-3.2.1; WOW64; Edition=1&input_age17/#page/Jeep,Lexus/rodimomu_vsegoddelki.ru/carbuznyj-90472-0-014031818%26height%3D901634571",
-        "min(hits.Title)": "видеорегионалу Google - Доставщиков и актрическая",
-        "c": 102,
-        "count(distinct hits.UserID)": 85
-      },
-      {
-        "SearchPhrase": "кино 2009) смотреть онлайн бессмерти мк в россипед",
-        "min(hits.URL)": "http://domchelove.ru/#!/search/page",
-        "min(hits.Title)": "Далее о коллекции в GIMI LANCIA 0K3Y318104 продать Google, go-go в регистрии — Мой Крым",
-        "c": 90,
-        "count(distinct hits.UserID)": 70
-      },
-      {
-        "SearchPhrase": "винки медведь смотреть",
-        "min(hits.URL)": "http://smeshariki.ru/a-folder-4/#page-3.2.1; WOW64; Edition=1&input_active/?do=showCampState/renatzija-na-brietielkakh%2F&ti=С",
-        "min(hits.Title)": "видеорегионалу Google - модного языке - Пульс",
-        "c": 87,
-        "count(distinct hits.UserID)": 56
-      },
-      {
-        "SearchPhrase": "тайны избавитель в владимира для университет масляться",
-        "min(hits.URL)": "http://smeshariki.ru/a-folder=cars/article=199980150195,0.107736/detail.aspx#location=search?text=asc&maxyear=2001216629%26sob%3D3159&input_who1=1&cid=577&oki=1&op_product_id=25&pvno=2&evlg=VC,2;VL",
-        "min(hits.Title)": "Амитин обувь - Яндекс.Видео+текст песен Google.com",
-        "c": 64,
-        "count(distinct hits.UserID)": 56
-      },
-      {
-        "SearchPhrase": "коптимиквиды юриста с роуз рая",
-        "min(hits.URL)": "https://produkty%2Fpulove.ru/booklyattion-war-sinij-9182/women",
-        "min(hits.Title)": "Легко на участные участников., Цены - Стильная парнем. Саганрог догадения : Турции, купить у 10 дне кольные машинки не представки - Новая с избиение спродажа: котята 2014 г.в. Цена: 47500-10ECO060 – -------- купить квартиру Оренбург (России Galantrax Flamiliada Google, Nо 18 фотоконверк Супер Кардиган",
-        "c": 45,
-        "count(distinct hits.UserID)": 12
-      },
-      {
-        "SearchPhrase": "винки медведь смотрейлера начальник",
-        "min(hits.URL)": "http://smeshariki.ru/a-folder-4/#page-3.2.1; WOW64; Edition=1&input_active/",
-        "min(hits.Title)": "видеорегионалу Google - модных Челябинск",
-        "c": 40,
-        "count(distinct hits.UserID)": 35
-      }
-    ]
-  },
-  {
-    "query": "SELECT * FROM hits WHERE \"URL\" LIKE '%google%' ORDER BY to_timestamp_seconds(\"EventTime\") LIMIT 10;",
-    "response": [
-      {
-        "WatchID": 7675678523794456216,
-        "JavaEnable": 1,
-        "Title": "Glavnaya gorand. Цветные объявлений районе, вером",
-        "GoodEvent": 1,
-        "EventTime": 1372708869,
-        "EventDate": 15888,
-        "CounterID": 64469,
-        "ClientIP": 1840073959,
-        "RegionID": 2,
-        "UserID": 3714843517822510735,
-        "CounterClass": 0,
-        "OS": 44,
-        "UserAgent": 5,
-        "URL": "http://e96.ru/search/page.googleTBR%26ad%3D0%26rnd%3D158197%26anbietersburg",
-        "Referer": "http://bdsmpeople.ru/obrazom_position/?page",
-        "IsRefresh": 0,
-        "RefererCategoryID": 13593,
-        "RefererRegionID": 158,
-        "URLCategoryID": 13606,
-        "URLRegionID": 216,
-        "ResolutionWidth": 1638,
-        "ResolutionHeight": 1658,
-        "ResolutionDepth": 22,
-        "FlashMajor": 15,
-        "FlashMinor": 7,
-        "FlashMinor2": 700,
-        "NetMajor": 0,
-        "NetMinor": 0,
-        "UserAgentMajor": 22,
-        "UserAgentMinor": "nA",
-        "CookieEnable": 1,
-        "JavascriptEnable": 1,
-        "IsMobile": 0,
-        "MobilePhone": 0,
-        "MobilePhoneModel": "",
-        "Params": "",
-        "IPNetworkID": 4005373,
-        "TraficSourceID": -1,
-        "SearchEngineID": 0,
-        "SearchPhrase": "",
-        "AdvEngineID": 0,
-        "IsArtifical": 0,
-        "WindowClientWidth": 1052,
-        "WindowClientHeight": 775,
-        "ClientTimeZone": 135,
-        "ClientEventTime": 1372760422,
-        "SilverlightVersion1": 0,
-        "SilverlightVersion2": 0,
-        "SilverlightVersion3": 0,
-        "SilverlightVersion4": 0,
-        "PageCharset": "windows",
-        "CodeVersion": 1601,
-        "IsLink": 0,
-        "IsDownload": 0,
-        "IsNotBounce": 0,
-        "FUniqID": 0,
-        "OriginalURL": "",
-        "HID": 213893614,
-        "IsOldCounter": 0,
-        "IsEvent": 0,
-        "IsParameter": 0,
-        "DontCountHits": 0,
-        "WithHash": 0,
-        "HitColor": 6,
-        "LocalEventTime": 1372766291,
-        "Age": 0,
-        "Sex": 0,
-        "Income": 0,
-        "Interests": 0,
-        "Robotness": 0,
-        "RemoteIP": 1412515749,
-        "WindowName": 63522,
-        "OpenerName": -1,
-        "HistoryLength": 12,
-        "BrowserLanguage": "S0",
-        "BrowserCountry": "�",
-        "SocialNetwork": 0,
-        "SocialAction": 0,
-        "HTTPError": 0,
-        "SendTiming": 0,
-        "DNSTiming": 0,
-        "ConnectTiming": 0,
-        "ResponseStartTiming": 445,
-        "ResponseEndTiming": 1234,
-        "FetchTiming": 0,
-        "SocialSourceNetworkID": 0,
-        "SocialSourcePage": 0,
-        "ParamPrice": 0,
-        "ParamOrderID": "",
-        "ParamCurrency": "NH",
-        "ParamCurrencyID": 0,
-        "OpenstatServiceName": "",
-        "OpenstatCampaignID": "",
-        "OpenstatAdID": "",
-        "OpenstatSourceID": "",
-        "UTMSource": "",
-        "UTMMedium": "",
-        "UTMCampaign": "",
-        "UTMContent": "",
-        "UTMTerm": "",
-        "FromTag": "",
-        "HasGCLID": 0,
-        "RefererHash": 5972490271588207794,
-        "URLHash": 1369713899219085694,
-        "CLID": 0
-      }
-    ]
-  },
-  {
-    "query": "SELECT \"SearchPhrase\" FROM hits WHERE \"SearchPhrase\" <> '' ORDER BY to_timestamp_seconds(\"EventTime\") LIMIT 10;",
-    "response": [
-      { "SearchPhrase": "симптомы регистратов" },
-      { "SearchPhrase": "galaxy s4 zoom фильм" },
-      { "SearchPhrase": "ночно китая женщины" },
-      { "SearchPhrase": "фильм небольшой бизнеса североятно" },
-      { "SearchPhrase": "расписание мультиварка для" },
-      { "SearchPhrase": "анапа оперевянные волшебную" },
-      { "SearchPhrase": "скачать читалию в духовке" },
-      { "SearchPhrase": "слон.руб., д. а.л. конфигурды по оргатства мультет" },
-      { "SearchPhrase": "отдыха чем прокат" },
-      { "SearchPhrase": "брита ганам котлы на шерлок" }
-    ]
-  },
-  {
-    "query": "SELECT \"SearchPhrase\" FROM hits WHERE \"SearchPhrase\" <> '' ORDER BY \"SearchPhrase\" LIMIT 10;",
-    "response": [
-      { "SearchPhrase": "береж" },
-      { "SearchPhrase": "за русский стил видео какой" },
-      { "SearchPhrase": "завод тандалищные прода" },
-      { "SearchPhrase": "заочное по земли в обрезни и метро" },
-      { "SearchPhrase": "заочное сад цены нарощения музыка визу" },
-      { "SearchPhrase": "зве" },
-      { "SearchPhrase": "земные огурцы раб" },
-      { "SearchPhrase": "золотой сайт samsung" },
-      { "SearchPhrase": "прав" },
-      { "SearchPhrase": "светы женске 2 сезон" }
-    ]
-  },
-  {
-    "query": "SELECT \"SearchPhrase\" FROM hits WHERE \"SearchPhrase\" <> '' ORDER BY to_timestamp_seconds(\"EventTime\"), \"SearchPhrase\" LIMIT 10;",
-    "response": [
-      { "SearchPhrase": "galaxy s4 zoom фильм" },
-      { "SearchPhrase": "ночно китая женщины" },
-      { "SearchPhrase": "симптомы регистратов" },
-      { "SearchPhrase": "фильм небольшой бизнеса североятно" },
-      { "SearchPhrase": "авом констеть ребенка краево" },
-      { "SearchPhrase": "анапа оперевянные волшебную" },
-      { "SearchPhrase": "брита ганам котлы на шерлок" },
-      { "SearchPhrase": "компьютерапии серия нарий" },
-      { "SearchPhrase": "отдыха чем прокат" },
-      { "SearchPhrase": "расписание мультиварка для" }
-    ]
-  },
-  {
-    "query": "SELECT \"CounterID\", AVG(length(\"URL\")) AS l, COUNT(*) AS c FROM hits WHERE \"URL\" <> '' GROUP BY \"CounterID\" HAVING COUNT(*) > 100000 ORDER BY l DESC LIMIT 25;",
-    "response": [
-      { "CounterID": 233773, "l": 453.1628285069236, "c": 2938865 },
-      { "CounterID": 245438, "l": 261.55616482670234, "c": 2510103 },
-      { "CounterID": 122612, "l": 230.68442591186866, "c": 3574007 },
-      { "CounterID": 234004, "l": 198.08936562473812, "c": 238660 },
-      { "CounterID": 1634, "l": 187.9562693941447, "c": 323229 },
-      { "CounterID": 786, "l": 180.36009889818135, "c": 120528 },
-      { "CounterID": 114157, "l": 139.11823037965326, "c": 216408 },
-      { "CounterID": 515, "l": 123.96623033619909, "c": 146907 },
-      { "CounterID": 256004, "l": 121.86100672243644, "c": 858171 },
-      { "CounterID": 95427, "l": 116.91921850037136, "c": 374306 },
-      { "CounterID": 199550, "l": 106.89180332891429, "c": 7115413 },
-      { "CounterID": 220992, "l": 103.7586784846365, "c": 494614 },
-      { "CounterID": 196239, "l": 95.01398682515553, "c": 163797 },
-      { "CounterID": 96948, "l": 92.1134607276574, "c": 396093 },
-      { "CounterID": 62, "l": 91.9427013479645, "c": 738150 },
-      { "CounterID": 188878, "l": 90.26380938339348, "c": 311998 },
-      { "CounterID": 249603, "l": 90.00957407022646, "c": 120325 },
-      { "CounterID": 3922, "l": 85.88640117723921, "c": 8527069 },
-      { "CounterID": 191697, "l": 85.03551145479048, "c": 124664 },
-      { "CounterID": 97467, "l": 82.76263550290444, "c": 131178 },
-      { "CounterID": 186300, "l": 82.05937991006292, "c": 802561 },
-      { "CounterID": 230962, "l": 74.73223497987863, "c": 169223 },
-      { "CounterID": 77639, "l": 74.65631730856313, "c": 253961 },
-      { "CounterID": 146891, "l": 74.13011535042938, "c": 605286 },
-      { "CounterID": 38, "l": 73.96797959706166, "c": 507770 }
-    ]
-  },
-  {
-    "query": "SELECT REGEXP_REPLACE(Referer, '^https?://(?:www\\.)?([^/]+)/.*$', '\\1') AS k, AVG(length(Referer)) AS l, COUNT(*) AS c, MIN(Referer) FROM hits WHERE Referer <> '' GROUP BY k HAVING COUNT(*) > 100000 ORDER BY l DESC LIMIT 25;",
-    "response": []
-  },
-  {
-    "query": "SELECT SUM(\"ResolutionWidth\"), SUM(\"ResolutionWidth\" + 1), SUM(\"ResolutionWidth\" + 2), SUM(\"ResolutionWidth\" + 3), SUM(\"ResolutionWidth\" + 4), SUM(\"ResolutionWidth\" + 5), SUM(\"ResolutionWidth\" + 6), SUM(\"ResolutionWidth\" + 7), SUM(\"ResolutionWidth\" + 8), SUM(\"ResolutionWidth\" + 9), SUM(\"ResolutionWidth\" + 10), SUM(\"ResolutionWidth\" + 11), SUM(\"ResolutionWidth\" + 12), SUM(\"ResolutionWidth\" + 13), SUM(\"ResolutionWidth\" + 14), SUM(\"ResolutionWidth\" + 15), SUM(\"ResolutionWidth\" + 16), SUM(\"ResolutionWidth\" + 17), SUM(\"ResolutionWidth\" + 18), SUM(\"ResolutionWidth\" + 19), SUM(\"ResolutionWidth\" + 20), SUM(\"ResolutionWidth\" + 21), SUM(\"ResolutionWidth\" + 22), SUM(\"ResolutionWidth\" + 23), SUM(\"ResolutionWidth\" + 24), SUM(\"ResolutionWidth\" + 25), SUM(\"ResolutionWidth\" + 26), SUM(\"ResolutionWidth\" + 27), SUM(\"ResolutionWidth\" + 28), SUM(\"ResolutionWidth\" + 29), SUM(\"ResolutionWidth\" + 30), SUM(\"ResolutionWidth\" + 31), SUM(\"ResolutionWidth\" + 32), SUM(\"ResolutionWidth\" + 33), SUM(\"ResolutionWidth\" + 34), SUM(\"ResolutionWidth\" + 35), SUM(\"ResolutionWidth\" + 36), SUM(\"ResolutionWidth\" + 37), SUM(\"ResolutionWidth\" + 38), SUM(\"ResolutionWidth\" + 39), SUM(\"ResolutionWidth\" + 40), SUM(\"ResolutionWidth\" + 41), SUM(\"ResolutionWidth\" + 42), SUM(\"ResolutionWidth\" + 43), SUM(\"ResolutionWidth\" + 44), SUM(\"ResolutionWidth\" + 45), SUM(\"ResolutionWidth\" + 46), SUM(\"ResolutionWidth\" + 47), SUM(\"ResolutionWidth\" + 48), SUM(\"ResolutionWidth\" + 49), SUM(\"ResolutionWidth\" + 50), SUM(\"ResolutionWidth\" + 51), SUM(\"ResolutionWidth\" + 52), SUM(\"ResolutionWidth\" + 53), SUM(\"ResolutionWidth\" + 54), SUM(\"ResolutionWidth\" + 55), SUM(\"ResolutionWidth\" + 56), SUM(\"ResolutionWidth\" + 57), SUM(\"ResolutionWidth\" + 58), SUM(\"ResolutionWidth\" + 59), SUM(\"ResolutionWidth\" + 60), SUM(\"ResolutionWidth\" + 61), SUM(\"ResolutionWidth\" + 62), SUM(\"ResolutionWidth\" + 63), SUM(\"ResolutionWidth\" + 64), SUM(\"ResolutionWidth\" + 65), SUM(\"ResolutionWidth\" + 66), SUM(\"ResolutionWidth\" + 67), SUM(\"ResolutionWidth\" + 68), SUM(\"ResolutionWidth\" + 69), SUM(\"ResolutionWidth\" + 70), SUM(\"ResolutionWidth\" + 71), SUM(\"ResolutionWidth\" + 72), SUM(\"ResolutionWidth\" + 73), SUM(\"ResolutionWidth\" + 74), SUM(\"ResolutionWidth\" + 75), SUM(\"ResolutionWidth\" + 76), SUM(\"ResolutionWidth\" + 77), SUM(\"ResolutionWidth\" + 78), SUM(\"ResolutionWidth\" + 79), SUM(\"ResolutionWidth\" + 80), SUM(\"ResolutionWidth\" + 81), SUM(\"ResolutionWidth\" + 82), SUM(\"ResolutionWidth\" + 83), SUM(\"ResolutionWidth\" + 84), SUM(\"ResolutionWidth\" + 85), SUM(\"ResolutionWidth\" + 86), SUM(\"ResolutionWidth\" + 87), SUM(\"ResolutionWidth\" + 88), SUM(\"ResolutionWidth\" + 89) FROM hits;",
-    "response": [
-      {
-        "sum(hits.ResolutionWidth)": 151345005230,
-        "sum(hits.ResolutionWidth + 1)": 151445002727,
-        "sum(hits.ResolutionWidth + 2)": 151545000224,
-        "sum(hits.ResolutionWidth + 3)": 151644997721,
-        "sum(hits.ResolutionWidth + 4)": 151744995218,
-        "sum(hits.ResolutionWidth + 5)": 151844992715,
-        "sum(hits.ResolutionWidth + 6)": 151944990212,
-        "sum(hits.ResolutionWidth + 7)": 152044987709,
-        "sum(hits.ResolutionWidth + 8)": 152144985206,
-        "sum(hits.ResolutionWidth + 9)": 152244982703,
-        "sum(hits.ResolutionWidth + 10)": 152344980200,
-        "sum(hits.ResolutionWidth + 11)": 152444977697,
-        "sum(hits.ResolutionWidth + 12)": 152544975194,
-        "sum(hits.ResolutionWidth + 13)": 152644972691,
-        "sum(hits.ResolutionWidth + 14)": 152744970188,
-        "sum(hits.ResolutionWidth + 15)": 152844967685,
-        "sum(hits.ResolutionWidth + 16)": 152944965182,
-        "sum(hits.ResolutionWidth + 17)": 153044962679,
-        "sum(hits.ResolutionWidth + 18)": 153144960176,
-        "sum(hits.ResolutionWidth + 19)": 153244957673,
-        "sum(hits.ResolutionWidth + 20)": 153344955170,
-        "sum(hits.ResolutionWidth + 21)": 153444952667,
-        "sum(hits.ResolutionWidth + 22)": 153544950164,
-        "sum(hits.ResolutionWidth + 23)": 153644947661,
-        "sum(hits.ResolutionWidth + 24)": 153744945158,
-        "sum(hits.ResolutionWidth + 25)": 153844942655,
-        "sum(hits.ResolutionWidth + 26)": 153944940152,
-        "sum(hits.ResolutionWidth + 27)": 154044937649,
-        "sum(hits.ResolutionWidth + 28)": 154144935146,
-        "sum(hits.ResolutionWidth + 29)": 154244932643,
-        "sum(hits.ResolutionWidth + 30)": 154344930140,
-        "sum(hits.ResolutionWidth + 31)": 154444927637,
-        "sum(hits.ResolutionWidth + 32)": 154544925134,
-        "sum(hits.ResolutionWidth + 33)": 154644922631,
-        "sum(hits.ResolutionWidth + 34)": 154744920128,
-        "sum(hits.ResolutionWidth + 35)": 154844917625,
-        "sum(hits.ResolutionWidth + 36)": 154944915122,
-        "sum(hits.ResolutionWidth + 37)": 155044912619,
-        "sum(hits.ResolutionWidth + 38)": 155144910116,
-        "sum(hits.ResolutionWidth + 39)": 155244907613,
-        "sum(hits.ResolutionWidth + 40)": 155344905110,
-        "sum(hits.ResolutionWidth + 41)": 155444902607,
-        "sum(hits.ResolutionWidth + 42)": 155544900104,
-        "sum(hits.ResolutionWidth + 43)": 155644897601,
-        "sum(hits.ResolutionWidth + 44)": 155744895098,
-        "sum(hits.ResolutionWidth + 45)": 155844892595,
-        "sum(hits.ResolutionWidth + 46)": 155944890092,
-        "sum(hits.ResolutionWidth + 47)": 156044887589,
-        "sum(hits.ResolutionWidth + 48)": 156144885086,
-        "sum(hits.ResolutionWidth + 49)": 156244882583,
-        "sum(hits.ResolutionWidth + 50)": 156344880080,
-        "sum(hits.ResolutionWidth + 51)": 156444877577,
-        "sum(hits.ResolutionWidth + 52)": 156544875074,
-        "sum(hits.ResolutionWidth + 53)": 156644872571,
-        "sum(hits.ResolutionWidth + 54)": 156744870068,
-        "sum(hits.ResolutionWidth + 55)": 156844867565,
-        "sum(hits.ResolutionWidth + 56)": 156944865062,
-        "sum(hits.ResolutionWidth + 57)": 157044862559,
-        "sum(hits.ResolutionWidth + 58)": 157144860056,
-        "sum(hits.ResolutionWidth + 59)": 157244857553,
-        "sum(hits.ResolutionWidth + 60)": 157344855050,
-        "sum(hits.ResolutionWidth + 61)": 157444852547,
-        "sum(hits.ResolutionWidth + 62)": 157544850044,
-        "sum(hits.ResolutionWidth + 63)": 157644847541,
-        "sum(hits.ResolutionWidth + 64)": 157744845038,
-        "sum(hits.ResolutionWidth + 65)": 157844842535,
-        "sum(hits.ResolutionWidth + 66)": 157944840032,
-        "sum(hits.ResolutionWidth + 67)": 158044837529,
-        "sum(hits.ResolutionWidth + 68)": 158144835026,
-        "sum(hits.ResolutionWidth + 69)": 158244832523,
-        "sum(hits.ResolutionWidth + 70)": 158344830020,
-        "sum(hits.ResolutionWidth + 71)": 158444827517,
-        "sum(hits.ResolutionWidth + 72)": 158544825014,
-        "sum(hits.ResolutionWidth + 73)": 158644822511,
-        "sum(hits.ResolutionWidth + 74)": 158744820008,
-        "sum(hits.ResolutionWidth + 75)": 158844817505,
-        "sum(hits.ResolutionWidth + 76)": 158944815002,
-        "sum(hits.ResolutionWidth + 77)": 159044812499,
-        "sum(hits.ResolutionWidth + 78)": 159144809996,
-        "sum(hits.ResolutionWidth + 79)": 159244807493,
-        "sum(hits.ResolutionWidth + 80)": 159344804990,
-        "sum(hits.ResolutionWidth + 81)": 159444802487,
-        "sum(hits.ResolutionWidth + 82)": 159544799984,
-        "sum(hits.ResolutionWidth + 83)": 159644797481,
-        "sum(hits.ResolutionWidth + 84)": 159744794978,
-        "sum(hits.ResolutionWidth + 85)": 159844792475,
-        "sum(hits.ResolutionWidth + 86)": 159944789972,
-        "sum(hits.ResolutionWidth + 87)": 160044787469,
-        "sum(hits.ResolutionWidth + 88)": 160144784966,
-        "sum(hits.ResolutionWidth + 89)": 160244782463
-      }
-    ]
-  },
-  {
-    "query": "SELECT \"SearchEngineID\", \"ClientIP\", COUNT(*) AS c, SUM(\"IsRefresh\"), AVG(\"ResolutionWidth\") FROM hits WHERE \"SearchPhrase\" <> '' GROUP BY \"SearchEngineID\", \"ClientIP\" ORDER BY c DESC LIMIT 10;",
-    "response": [
-      {
-        "SearchEngineID": 2,
-        "ClientIP": 1138507705,
-        "c": 1633,
-        "sum(hits.IsRefresh)": 35,
-        "avg(hits.ResolutionWidth)": 1408.0122473974282
-      },
-      {
-        "SearchEngineID": 2,
-        "ClientIP": 1740861572,
-        "c": 1331,
-        "sum(hits.IsRefresh)": 28,
-        "avg(hits.ResolutionWidth)": 1577.945905334335
-      },
-      {
-        "SearchEngineID": 2,
-        "ClientIP": -807147100,
-        "c": 1144,
-        "sum(hits.IsRefresh)": 35,
-        "avg(hits.ResolutionWidth)": 1553.1984265734266
-      },
-      {
-        "SearchEngineID": 2,
-        "ClientIP": -497906719,
-        "c": 1140,
-        "sum(hits.IsRefresh)": 36,
-        "avg(hits.ResolutionWidth)": 1543.4140350877192
-      },
-      {
-        "SearchEngineID": 2,
-        "ClientIP": -1945757555,
-        "c": 1105,
-        "sum(hits.IsRefresh)": 30,
-        "avg(hits.ResolutionWidth)": 1557.387330316742
-      },
-      {
-        "SearchEngineID": 2,
-        "ClientIP": -1870623097,
-        "c": 1102,
-        "sum(hits.IsRefresh)": 31,
-        "avg(hits.ResolutionWidth)": 1555.6588021778584
-      },
-      {
-        "SearchEngineID": 2,
-        "ClientIP": -631062503,
-        "c": 1083,
-        "sum(hits.IsRefresh)": 31,
-        "avg(hits.ResolutionWidth)": 1581.8171745152354
-      },
-      {
-        "SearchEngineID": 2,
-        "ClientIP": -465813166,
-        "c": 1082,
-        "sum(hits.IsRefresh)": 30,
-        "avg(hits.ResolutionWidth)": 1541.253234750462
-      },
-      {
-        "SearchEngineID": 2,
-        "ClientIP": -1743596151,
-        "c": 1080,
-        "sum(hits.IsRefresh)": 24,
-        "avg(hits.ResolutionWidth)": 1559.8092592592593
-      },
-      {
-        "SearchEngineID": 2,
-        "ClientIP": -265917476,
-        "c": 1058,
-        "sum(hits.IsRefresh)": 32,
-        "avg(hits.ResolutionWidth)": 1556.2003780718337
-      }
-    ]
-  },
-  {
-    "query": "SELECT \"WatchID\", \"ClientIP\", COUNT(*) AS c, SUM(\"IsRefresh\"), AVG(\"ResolutionWidth\") FROM hits WHERE \"SearchPhrase\" <> '' GROUP BY \"WatchID\", \"ClientIP\" ORDER BY c DESC LIMIT 10;",
-    "response": [
-      {
-        "WatchID": 8552395030277055010,
-        "ClientIP": 1915204244,
-        "c": 1,
-        "sum(hits.IsRefresh)": 0,
-        "avg(hits.ResolutionWidth)": 1996.0
-      },
-      {
-        "WatchID": 8032257478827968944,
-        "ClientIP": -1808170151,
-        "c": 1,
-        "sum(hits.IsRefresh)": 0,
-        "avg(hits.ResolutionWidth)": 1368.0
-      },
-      {
-        "WatchID": 9127363327184079005,
-        "ClientIP": 1997963053,
-        "c": 1,
-        "sum(hits.IsRefresh)": 0,
-        "avg(hits.ResolutionWidth)": 1828.0
-      },
-      {
-        "WatchID": 6227034649967062911,
-        "ClientIP": 1613931788,
-        "c": 1,
-        "sum(hits.IsRefresh)": 0,
-        "avg(hits.ResolutionWidth)": 1087.0
-      },
-      {
-        "WatchID": 5967694626148577393,
-        "ClientIP": 1901761973,
-        "c": 1,
-        "sum(hits.IsRefresh)": 0,
-        "avg(hits.ResolutionWidth)": 1996.0
-      },
-      {
-        "WatchID": 9104969147573201866,
-        "ClientIP": 1945522631,
-        "c": 1,
-        "sum(hits.IsRefresh)": 0,
-        "avg(hits.ResolutionWidth)": 1368.0
-      },
-      {
-        "WatchID": 7244153296068007677,
-        "ClientIP": -1227195938,
-        "c": 1,
-        "sum(hits.IsRefresh)": 0,
-        "avg(hits.ResolutionWidth)": 1368.0
-      },
-      {
-        "WatchID": 7789048302407315605,
-        "ClientIP": 1955638032,
-        "c": 1,
-        "sum(hits.IsRefresh)": 0,
-        "avg(hits.ResolutionWidth)": 1087.0
-      },
-      {
-        "WatchID": 8447465914752539347,
-        "ClientIP": 1055111774,
-        "c": 1,
-        "sum(hits.IsRefresh)": 0,
-        "avg(hits.ResolutionWidth)": 1638.0
-      },
-      {
-        "WatchID": 5671934170600643926,
-        "ClientIP": 124395956,
-        "c": 1,
-        "sum(hits.IsRefresh)": 0,
-        "avg(hits.ResolutionWidth)": 1368.0
-      }
-    ]
-  },
-  {
-    "query": "SELECT \"WatchID\", \"ClientIP\", COUNT(*) AS c, SUM(\"IsRefresh\"), AVG(\"ResolutionWidth\") FROM hits GROUP BY \"WatchID\", \"ClientIP\" ORDER BY c DESC LIMIT 10;",
-    "response": []
-  },
-  {
-    "query": "SELECT URL, COUNT(*) AS c FROM hits GROUP BY \"URL\" ORDER BY c DESC LIMIT 10;",
-    "response": []
-  },
-  {
-    "query": "SELECT 1, URL, COUNT(*) AS c FROM hits GROUP BY 1, \"URL\" ORDER BY c DESC LIMIT 10;",
-    "response": []
-  },
-  {
-    "query": "SELECT \"ClientIP\", \"ClientIP\" - 1, \"ClientIP\" - 2, \"ClientIP\" - 3, COUNT(*) AS c FROM hits GROUP BY \"ClientIP\", \"ClientIP\" - 1, \"ClientIP\" - 2, \"ClientIP\" - 3 ORDER BY c DESC LIMIT 10;",
-    "response": [
-      {
-        "ClientIP": -39921974,
-        "hits.ClientIP - Int64(1)": -39921975,
-        "hits.ClientIP - Int64(2)": -39921976,
-        "hits.ClientIP - Int64(3)": -39921977,
-        "c": 47008
-      },
-      {
-        "ClientIP": -1698104457,
-        "hits.ClientIP - Int64(1)": -1698104458,
-        "hits.ClientIP - Int64(2)": -1698104459,
-        "hits.ClientIP - Int64(3)": -1698104460,
-        "c": 29121
-      },
-      {
-        "ClientIP": -1175819552,
-        "hits.ClientIP - Int64(1)": -1175819553,
-        "hits.ClientIP - Int64(2)": -1175819554,
-        "hits.ClientIP - Int64(3)": -1175819555,
-        "c": 25333
-      },
-      {
-        "ClientIP": 1696638182,
-        "hits.ClientIP - Int64(1)": 1696638181,
-        "hits.ClientIP - Int64(2)": 1696638180,
-        "hits.ClientIP - Int64(3)": 1696638179,
-        "c": 20220
-      },
-      {
-        "ClientIP": 1138507705,
-        "hits.ClientIP - Int64(1)": 1138507704,
-        "hits.ClientIP - Int64(2)": 1138507703,
-        "hits.ClientIP - Int64(3)": 1138507702,
-        "c": 15778
-      },
-      {
-        "ClientIP": -927025522,
-        "hits.ClientIP - Int64(1)": -927025523,
-        "hits.ClientIP - Int64(2)": -927025524,
-        "hits.ClientIP - Int64(3)": -927025525,
-        "c": 12768
-      },
-      {
-        "ClientIP": -1262139876,
-        "hits.ClientIP - Int64(1)": -1262139877,
-        "hits.ClientIP - Int64(2)": -1262139878,
-        "hits.ClientIP - Int64(3)": -1262139879,
-        "c": 11348
-      },
-      {
-        "ClientIP": 1740861572,
-        "hits.ClientIP - Int64(1)": 1740861571,
-        "hits.ClientIP - Int64(2)": 1740861570,
-        "hits.ClientIP - Int64(3)": 1740861569,
-        "c": 11314
-      },
-      {
-        "ClientIP": -807147100,
-        "hits.ClientIP - Int64(1)": -807147101,
-        "hits.ClientIP - Int64(2)": -807147102,
-        "hits.ClientIP - Int64(3)": -807147103,
-        "c": 9880
-      },
-      {
-        "ClientIP": -631062503,
-        "hits.ClientIP - Int64(1)": -631062504,
-        "hits.ClientIP - Int64(2)": -631062505,
-        "hits.ClientIP - Int64(3)": -631062506,
-        "c": 9718
-      }
-    ]
-  },
-  {
-    "query": "SELECT URL, COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"DontCountHits\" = 0 AND \"IsRefresh\" = 0 AND \"URL\" <> '' GROUP BY \"URL\" ORDER BY \"PageViews\" DESC LIMIT 10;",
-    "response": [
-      {
-        "URL": "http://irr.ru/index.php?showalbum/login-leniya7777294,938303130",
-        "pageviews": 102341
-      },
-      { "URL": "http://komme%2F27.0.1453.116", "pageviews": 51218 },
-      {
-        "URL": "http://irr.ru/index.php?showalbum/login-kapusta-advert2668]=0&order_by=0",
-        "pageviews": 18315
-      },
-      {
-        "URL": "http://irr.ru/index.php?showalbum/login-kapustic/product_name",
-        "pageviews": 16461
-      },
-      { "URL": "http://irr.ru/index.php", "pageviews": 12577 },
-      { "URL": "http://irr.ru/index.php?showalbum/login", "pageviews": 10880 },
-      {
-        "URL": "http://komme%2F27.0.1453.116 Safari%2F5.0 (compatible; MSIE 9.0;",
-        "pageviews": 7627
-      },
-      {
-        "URL": "http://irr.ru/index.php?showalbum/login-kupalnik",
-        "pageviews": 4369
-      },
-      {
-        "URL": "http://irr.ru/index.php?showalbum/login-kapusta-advert27256.html_params",
-        "pageviews": 4058
-      },
-      { "URL": "http://komme%2F27.0.1453.116 Safari", "pageviews": 3021 }
-    ]
-  },
-  {
-    "query": "SELECT \"Title\", COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"DontCountHits\" = 0 AND \"IsRefresh\" = 0 AND \"Title\" <> '' GROUP BY \"Title\" ORDER BY \"PageViews\" DESC LIMIT 10;",
-    "response": [
-      { "Title": "Тест (Россия) - Яндекс", "pageviews": 122407 },
-      {
-        "Title": "Шарарай), Выбрать! - обсуждаются на голд: Шоубиз - Свободная историс",
-        "pageviews": 82935
-      },
-      { "Title": "Приморск - IRR.ru", "pageviews": 80958 },
-      {
-        "Title": "Брюки New Era H (Асус) 258 общая выплаток, горшечными",
-        "pageviews": 39098
-      },
-      { "Title": "Теплоску на", "pageviews": 23123 },
-      { "Title": "Dave and Hotpoint sport – самые вещие", "pageviews": 14329 },
-      { "Title": "AUTO.ria.ua ™ - Аппер", "pageviews": 14053 },
-      { "Title": "Приморск (Россия) - Яндекс.Видео", "pageviews": 13912 },
-      { "Title": "OWAProfessign), продать", "pageviews": 10919 },
-      { "Title": "Труси - Шоубиз", "pageviews": 10157 }
-    ]
-  },
-  {
-    "query": "SELECT \"URL\", COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"IsRefresh\" = 0 AND \"IsLink\" <> 0 AND \"IsDownload\" = 0 GROUP BY \"URL\" ORDER BY \"PageViews\" DESC LIMIT 10 OFFSET 1000;",
-    "response": [
-      {
-        "URL": "http://stalker-pub-20087898675494,960948/#page_type%3D260117152337&spn=1395,94558/page.aspx#location=search=0&color=0&auto_ria=0&type=category_id=66&pt=b&pd=8&pw=6&pw=2&pv=23&prr=1",
-        "pageviews": 2
-      },
-      {
-        "URL": "http://kurort.html%3Fhtml",
-        "pageviews": 2
-      },
-      {
-        "URL": "http://smeshariki.ru/karabika",
-        "pageviews": 2
-      },
-      {
-        "URL": "http://zarplata.ru/?p=126711-recept-Grecheniya.html?1=1&city&custom%3D1216629/0/&&puid1",
-        "pageviews": 2
-      },
-      {
-        "URL": "http://love.ru/forums",
-        "pageviews": 2
-      },
-      {
-        "URL": "http://amobil.ru/talks",
-        "pageviews": 2
-      },
-      {
-        "URL": "http://clubqashqai.ru/furniturer13",
-        "pageviews": 2
-      },
-      {
-        "URL": "http://auto_id=577",
-        "pageviews": 2
-      },
-      {
-        "URL": "http://kompre",
-        "pageviews": 2
-      },
-      {
-        "URL": "http://afisha.yandex.php?f",
-        "pageviews": 2
-      }
-    ]
-  },
-  {
-    "query": "SELECT \"TraficSourceID\", \"SearchEngineID\", \"AdvEngineID\", CASE WHEN (\"SearchEngineID\" = 0 AND \"AdvEngineID\" = 0) THEN Referer ELSE '' END AS \"Src\", \"URL\" AS Dst, COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"IsRefresh\" = 0 GROUP BY \"TraficSourceID\", \"SearchEngineID\", \"AdvEngineID\", \"Src\", \"Dst\" ORDER BY \"PageViews\" DESC LIMIT 10 OFFSET 1000;",
-    "response": [
-      {
-        "TraficSourceID": -1,
-        "SearchEngineID": 0,
-        "AdvEngineID": 0,
-        "src": "http://state=19945206/foto-4/login-2006/makumirostova.ru/ch/floore troubleclick=bests/?date",
-        "dst": "http://irr.ru/index.php?showalbum/login-leniya7777294,938303130",
-        "pageviews": 15
-      },
-      {
-        "TraficSourceID": -1,
-        "SearchEngineID": 0,
-        "AdvEngineID": 0,
-        "src": "http://state=19945206/foto-4/login-2491724/?bundlers/search?text",
-        "dst": "http://irr.ru/index.php?showalbum/login-kapusta-advert2678&op_page=60000/currency=RUR/hasimage=3",
-        "pageviews": 15
-      },
-      {
-        "TraficSourceID": 1,
-        "SearchEngineID": 0,
-        "AdvEngineID": 0,
-        "src": "http://mysw.info/node/215455&text",
-        "dst": "http://irr.ru/index.php?showalbum/login-3284][11]=6625f3634571&state=0&expand_search=0&damagecache/wm/2013&price_do=50000&page/1772,903742726108784&op_uid",
-        "pageviews": 15
-      },
-      {
-        "TraficSourceID": 5,
-        "SearchEngineID": 0,
-        "AdvEngineID": 0,
-        "src": "http://kinopoisk.ru/yandex.ru/auto/69363",
-        "dst": "http:%2F%2Fwwwwww.bonprix.ru/myAccountry",
-        "pageviews": 15
-      },
-      {
-        "TraficSourceID": -1,
-        "SearchEngineID": 0,
-        "AdvEngineID": 0,
-        "src": "http://state=19945206/foto-4/loginskikh-viana.irr.ru/GameMain.aspx?sle=1/house.ru/yandsearch?text=все серии&sa=t&rct=j&q=аэратор&item.aspx?sort_key=9582&text=meiz/Stoimost-iAQ4MyP5gLAD&url=wwww.migom.by/?crnd=59039395&op_category_id=&maxprice=2&state=200&custom=0&doorov_i_magicbay.ru/moscow/90/incidential/BuyCongrad.irr.ru/men.aspx?group_cod_1s=1680&bpp=6&currency=RUR/keywords=блокарнизе 2000024879166191/offe.aspx",
-        "dst": "http://irr.ru/index.php?showalbum/login-kapusta-advertist/?act=full&Form.aspx?group_cod",
-        "pageviews": 15
-      },
-      {
-        "TraficSourceID": 0,
-        "SearchEngineID": 0,
-        "AdvEngineID": 0,
-        "src": "",
-        "dst": "http://irr.ru/index.php?showalbum/login-4433140796851/detail/536180&all=False&issearch/price",
-        "pageviews": 15
-      },
-      {
-        "TraficSourceID": -1,
-        "SearchEngineID": 0,
-        "AdvEngineID": 0,
-        "src": "http://state=19945206/foto-4/login-2491724/?bundlers/search?text",
-        "dst": "http://irr.ru/index.php?showalbum/login-kapusta-advert27265484158197%26width%3D728%26height%3D43",
-        "pageviews": 15
-      },
-      {
-        "TraficSourceID": -1,
-        "SearchEngineID": 0,
-        "AdvEngineID": 0,
-        "src": "http://state=19945206/foto-4/login-2491724/?bundlers/search?text",
-        "dst": "http://irr.ru/index.php?showalbum/login-kapusta-advertsiensmed.ru/olga4272980&with_photo=0&with",
-        "pageviews": 15
-      },
-      {
-        "TraficSourceID": -1,
-        "SearchEngineID": 0,
-        "AdvEngineID": 0,
-        "src": "http://state=19945206/foto-4/login-2006/makumiroshoowbiz/photo=450&with_photo=700758&brand had art&pagead2",
-        "dst": "http://irr.ru/index.php?showalbum/login-lential/secondary/details9.html_params%3Drhost%3D43%26bt%3D41%26url%3Dhttp://trashbox.ru/a-albumshowbiz/photo.kiev.ua/auto.ria.ua/auto.ria.ua/sfynkcioner.ru/filmId=model=0&saledParam=0&under_credit=0&che_sistana/tm.pulscend/telefon-A48A-F40EFF22-pro-rassiysk.irr.ru/search",
-        "pageviews": 15
-      },
-      {
-        "TraficSourceID": -1,
-        "SearchEngineID": 0,
-        "AdvEngineID": 0,
-        "src": "http://state=19945206/foto-4/login-2491724/?bundlers/search?text",
-        "dst": "http://irr.ru/index.php?showalbum/login-kapusta-advert26406956/?_h=search/roomer/rnd/event=big&marka",
-        "pageviews": 15
-      }
-    ]
-  },
-  {
-    "query": "SELECT \"URLHash\", \"EventDate\"::DATE, COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"IsRefresh\" = 0 AND \"TraficSourceID\" IN (-1, 6) AND \"RefererHash\" = 3594120000172545465 GROUP BY \"URLHash\", \"EventDate\"::DATE ORDER BY \"PageViews\" DESC LIMIT 10 OFFSET 100;",
-    "response": [
-      {
-        "URLHash": 7199155066341437901,
-        "EventDate": "2013-07-15",
-        "pageviews": 27
-      },
-      {
-        "URLHash": 5520570504648279068,
-        "EventDate": "2013-07-15",
-        "pageviews": 27
-      },
-      {
-        "URLHash": 2512899255762264913,
-        "EventDate": "2013-07-15",
-        "pageviews": 26
-      },
-      {
-        "URLHash": -8505838588544217213,
-        "EventDate": "2013-07-15",
-        "pageviews": 26
-      },
-      {
-        "URLHash": -6048157399675510565,
-        "EventDate": "2013-07-15",
-        "pageviews": 25
-      },
-      {
-        "URLHash": -3611962581960090019,
-        "EventDate": "2013-07-15",
-        "pageviews": 25
-      },
-      {
-        "URLHash": -6025761452198030778,
-        "EventDate": "2013-07-15",
-        "pageviews": 25
-      },
-      {
-        "URLHash": 6943133878034238200,
-        "EventDate": "2013-07-15",
-        "pageviews": 24
-      },
-      {
-        "URLHash": 1045132364006275583,
-        "EventDate": "2013-07-15",
-        "pageviews": 24
-      },
-      {
-        "URLHash": 6976198041684576969,
-        "EventDate": "2013-07-15",
-        "pageviews": 24
-      }
-    ]
-  },
-  {
-    "query": "SELECT \"WindowClientWidth\", \"WindowClientHeight\", COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"IsRefresh\" = 0 AND \"DontCountHits\" = 0 AND \"URLHash\" = 2868770270353813622 GROUP BY \"WindowClientWidth\", \"WindowClientHeight\" ORDER BY \"PageViews\" DESC LIMIT 10 OFFSET 10000;",
-    "response": [
-      { "WindowClientWidth": 540, "WindowClientHeight": 711, "pageviews": 1 },
-      { "WindowClientWidth": 1581, "WindowClientHeight": 931, "pageviews": 1 },
-      { "WindowClientWidth": 1926, "WindowClientHeight": 784, "pageviews": 1 },
-      { "WindowClientWidth": 747, "WindowClientHeight": 374, "pageviews": 1 },
-      { "WindowClientWidth": 1311, "WindowClientHeight": 796, "pageviews": 1 },
-      { "WindowClientWidth": 1183, "WindowClientHeight": 942, "pageviews": 1 },
-      { "WindowClientWidth": 1960, "WindowClientHeight": 826, "pageviews": 1 },
-      { "WindowClientWidth": 746, "WindowClientHeight": 497, "pageviews": 1 },
-      { "WindowClientWidth": 476, "WindowClientHeight": 374, "pageviews": 1 },
-      { "WindowClientWidth": 1473, "WindowClientHeight": 951, "pageviews": 1 }
-    ]
-  },
-  {
-    "query": "SELECT DATE_TRUNC('minute', to_timestamp_seconds(\"EventTime\")) AS M, COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-14' AND \"EventDate\"::DATE <= '2013-07-15' AND \"IsRefresh\" = 0 AND \"DontCountHits\" = 0 GROUP BY DATE_TRUNC('minute', to_timestamp_seconds(\"EventTime\")) ORDER BY DATE_TRUNC('minute', M) LIMIT 10 OFFSET 1000;",
-    "response": [
-      { "m": "2013-07-15T12:40:00", "pageviews": 513 },
-      { "m": "2013-07-15T12:41:00", "pageviews": 457 },
-      { "m": "2013-07-15T12:42:00", "pageviews": 470 },
-      { "m": "2013-07-15T12:43:00", "pageviews": 468 },
-      { "m": "2013-07-15T12:44:00", "pageviews": 453 },
-      { "m": "2013-07-15T12:45:00", "pageviews": 462 },
-      { "m": "2013-07-15T12:46:00", "pageviews": 481 },
-      { "m": "2013-07-15T12:47:00", "pageviews": 458 },
-      { "m": "2013-07-15T12:48:00", "pageviews": 466 },
-      { "m": "2013-07-15T12:49:00", "pageviews": 467 }
-    ]
-  }
-]
+{
+  "queries": [
+    {
+      "query": "SELECT COUNT(*) FROM hits;",
+      "response": [{ "count(*)": 99997497 }]
+    },
+    {
+      "query": "SELECT COUNT(*) FROM hits WHERE \"AdvEngineID\" <> 0;",
+      "response": [{ "count(*)": 630500 }]
+    },
+    {
+      "query": "SELECT SUM(\"AdvEngineID\"), COUNT(*), AVG(\"ResolutionWidth\") FROM hits;",
+      "response": [
+        {
+          "sum(AdvEngineID)": 7280088,
+          "count(*)": 99997497,
+          "avg(ResolutionWidth)": 1513.4879349030107
+        }
+      ]
+    },
+    {
+      "query": "SELECT AVG(\"UserID\") FROM hits;",
+      "response": [{ "avg(UserID)": 2.5289530297897144e18 }]
+    },
+    {
+      "query": "SELECT COUNT(DISTINCT \"UserID\") FROM hits;",
+      "response": [{ "count(DISTINCT \"UserID\")": 17630976 }]
+    },
+    {
+      "query": "SELECT COUNT(DISTINCT \"SearchPhrase\") FROM hits;",
+      "response": [{ "count(DISTINCT hits.SearchPhrase)": 6019103 }]
+    },
+    {
+      "query": "SELECT MIN(\"EventDate\"::DATE), MAX(\"EventDate\"::DATE) FROM hits;",
+      "response": [
+        {
+          "min(hits.EventDate)": "2013-07-02",
+          "max(hits.EventDate)": "2013-07-31"
+        }
+      ]
+    },
+    {
+      "query": "SELECT \"AdvEngineID\", COUNT(*) FROM hits WHERE \"AdvEngineID\" <> 0 GROUP BY \"AdvEngineID\" ORDER BY COUNT(*) DESC;",
+      "response": [
+        { "AdvEngineID": 2, "count(*)": 404602 },
+        { "AdvEngineID": 27, "count(*)": 113167 },
+        { "AdvEngineID": 13, "count(*)": 45631 },
+        { "AdvEngineID": 45, "count(*)": 38960 },
+        { "AdvEngineID": 44, "count(*)": 9730 },
+        { "AdvEngineID": 3, "count(*)": 6896 },
+        { "AdvEngineID": 62, "count(*)": 5266 },
+        { "AdvEngineID": 52, "count(*)": 3554 },
+        { "AdvEngineID": 50, "count(*)": 938 },
+        { "AdvEngineID": 28, "count(*)": 836 },
+        { "AdvEngineID": 53, "count(*)": 350 },
+        { "AdvEngineID": 25, "count(*)": 343 },
+        { "AdvEngineID": 61, "count(*)": 158 },
+        { "AdvEngineID": 21, "count(*)": 38 },
+        { "AdvEngineID": 42, "count(*)": 20 },
+        { "AdvEngineID": 16, "count(*)": 7 },
+        { "AdvEngineID": 7, "count(*)": 3 },
+        { "AdvEngineID": 22, "count(*)": 1 }
+      ]
+    },
+    {
+      "query": "SELECT \"RegionID\", COUNT(DISTINCT \"UserID\") AS u FROM hits GROUP BY \"RegionID\" ORDER BY u DESC LIMIT 10;",
+      "response": [
+        { "RegionID": 229, "u": 2845673 },
+        { "RegionID": 2, "u": 1081016 },
+        { "RegionID": 208, "u": 831676 },
+        { "RegionID": 169, "u": 604583 },
+        { "RegionID": 184, "u": 322661 },
+        { "RegionID": 158, "u": 307152 },
+        { "RegionID": 34, "u": 299479 },
+        { "RegionID": 55, "u": 286525 },
+        { "RegionID": 107, "u": 272448 },
+        { "RegionID": 42, "u": 243181 }
+      ]
+    },
+    {
+      "query": "SELECT \"RegionID\", SUM(\"AdvEngineID\"), COUNT(*) AS c, AVG(\"ResolutionWidth\"), COUNT(DISTINCT \"UserID\") FROM hits GROUP BY \"RegionID\" ORDER BY c DESC LIMIT 10;",
+      "response": [
+        {
+          "RegionID": 229,
+          "sum(hits.AdvEngineID)": 2077656,
+          "c": 18295832,
+          "avg(hits.ResolutionWidth)": 1506.085243130785,
+          "count(Distinct hits.UserID)": 2845673
+        },
+        {
+          "RegionID": 2,
+          "sum(hits.AdvEngineID)": 441662,
+          "c": 6687587,
+          "avg(hits.ResolutionWidth)": 1479.8386542111527,
+          "count(Distinct hits.UserID)": 1081016
+        },
+        {
+          "RegionID": 208,
+          "sum(hits.AdvEngineID)": 285925,
+          "c": 4261812,
+          "avg(hits.ResolutionWidth)": 1285.2593246722286,
+          "count(Distinct hits.UserID)": 831676
+        },
+        {
+          "RegionID": 169,
+          "sum(hits.AdvEngineID)": 100887,
+          "c": 3320229,
+          "avg(hits.ResolutionWidth)": 1465.9073732564832,
+          "count(Distinct hits.UserID)": 604583
+        },
+        {
+          "RegionID": 32,
+          "sum(hits.AdvEngineID)": 81498,
+          "c": 1843518,
+          "avg(hits.ResolutionWidth)": 1538.0376568061718,
+          "count(Distinct hits.UserID)": 216010
+        },
+        {
+          "RegionID": 34,
+          "sum(hits.AdvEngineID)": 161779,
+          "c": 1792369,
+          "avg(hits.ResolutionWidth)": 1548.360152401654,
+          "count(Distinct hits.UserID)": 299479
+        },
+        {
+          "RegionID": 184,
+          "sum(hits.AdvEngineID)": 55526,
+          "c": 1755192,
+          "avg(hits.ResolutionWidth)": 1506.8082967561384,
+          "count(Distinct hits.UserID)": 322661
+        },
+        {
+          "RegionID": 42,
+          "sum(hits.AdvEngineID)": 108820,
+          "c": 1542717,
+          "avg(hits.ResolutionWidth)": 1587.1085208758313,
+          "count(Distinct hits.UserID)": 243181
+        },
+        {
+          "RegionID": 107,
+          "sum(hits.AdvEngineID)": 120470,
+          "c": 1516690,
+          "avg(hits.ResolutionWidth)": 1548.6028970982863,
+          "count(Distinct hits.UserID)": 272448
+        },
+        {
+          "RegionID": 51,
+          "sum(hits.AdvEngineID)": 98212,
+          "c": 1435578,
+          "avg(hits.ResolutionWidth)": 1579.8860354505293,
+          "count(Distinct hits.UserID)": 211505
+        }
+      ]
+    },
+    {
+      "query": "SELECT \"MobilePhoneModel\", COUNT(DISTINCT \"UserID\") AS u FROM hits WHERE \"MobilePhoneModel\" <> '' GROUP BY \"MobilePhoneModel\" ORDER BY u DESC LIMIT 10;",
+      "response": [
+        { "MobilePhoneModel": "iPad", "u": 1090347 },
+        { "MobilePhoneModel": "iPhone", "u": 45758 },
+        { "MobilePhoneModel": "A500", "u": 16046 },
+        { "MobilePhoneModel": "N8-00", "u": 5565 },
+        { "MobilePhoneModel": "iPho", "u": 3300 },
+        { "MobilePhoneModel": "ONE TOUCH 6030A", "u": 2759 },
+        { "MobilePhoneModel": "GT-P7300B", "u": 1907 },
+        { "MobilePhoneModel": "3110000", "u": 1871 },
+        { "MobilePhoneModel": "GT-I9500", "u": 1598 },
+        { "MobilePhoneModel": "eagle75", "u": 1492 }
+      ]
+    },
+    {
+      "query": "SELECT \"MobilePhone\", \"MobilePhoneModel\", COUNT(DISTINCT \"UserID\") AS u FROM hits WHERE \"MobilePhoneModel\" <> '' GROUP BY \"MobilePhone\", \"MobilePhoneModel\" ORDER BY u DESC LIMIT 10;",
+      "response": [
+        { "MobilePhone": 1, "MobilePhoneModel": "iPad", "u": 931038 },
+        { "MobilePhone": 5, "MobilePhoneModel": "iPad", "u": 48385 },
+        { "MobilePhone": 6, "MobilePhoneModel": "iPad", "u": 29710 },
+        { "MobilePhone": 7, "MobilePhoneModel": "iPad", "u": 28391 },
+        { "MobilePhone": 118, "MobilePhoneModel": "A500", "u": 16005 },
+        { "MobilePhone": 6, "MobilePhoneModel": "iPhone", "u": 14516 },
+        { "MobilePhone": 26, "MobilePhoneModel": "iPhone", "u": 13566 },
+        { "MobilePhone": 10, "MobilePhoneModel": "iPad", "u": 11433 },
+        { "MobilePhone": 32, "MobilePhoneModel": "iPad", "u": 9503 },
+        { "MobilePhone": 13, "MobilePhoneModel": "iPad", "u": 9417 }
+      ]
+    },
+    {
+      "query": "SELECT \"SearchPhrase\", COUNT(*) AS c FROM hits WHERE \"SearchPhrase\" <> '' GROUP BY \"SearchPhrase\" ORDER BY c DESC LIMIT 10;",
+      "response": [
+        { "SearchPhrase": "карелки", "c": 70263 },
+        { "SearchPhrase": "албатрутдин", "c": 34675 },
+        { "SearchPhrase": "смотреть онлайн", "c": 24580 },
+        { "SearchPhrase": "смотреть онлайн бесплатно", "c": 21647 },
+        { "SearchPhrase": "смотреть", "c": 19707 },
+        { "SearchPhrase": "мангу в зарабей грама", "c": 19195 },
+        { "SearchPhrase": "дружке помещение", "c": 17284 },
+        { "SearchPhrase": "galaxy table", "c": 16746 },
+        { "SearchPhrase": "экзоидные", "c": 16620 },
+        { "SearchPhrase": "сколько мытищи", "c": 12317 }
+      ]
+    },
+    {
+      "query": "SELECT \"SearchPhrase\", COUNT(DISTINCT \"UserID\") AS u FROM hits WHERE \"SearchPhrase\" <> '' GROUP BY \"SearchPhrase\" ORDER BY u DESC LIMIT 10;",
+      "response": [
+        { "SearchPhrase": "карелки", "c": 70263 },
+        { "SearchPhrase": "албатрутдин", "c": 34675 },
+        { "SearchPhrase": "смотреть онлайн", "c": 24580 },
+        { "SearchPhrase": "смотреть онлайн бесплатно", "c": 21647 },
+        { "SearchPhrase": "смотреть", "c": 19707 },
+        { "SearchPhrase": "мангу в зарабей грама", "c": 19195 },
+        { "SearchPhrase": "дружке помещение", "c": 17284 },
+        { "SearchPhrase": "galaxy table", "c": 16746 },
+        { "SearchPhrase": "экзоидные", "c": 16620 },
+        { "SearchPhrase": "сколько мытищи", "c": 12317 }
+      ]
+    },
+    {
+      "query": "SELECT \"SearchEngineID\", \"SearchPhrase\", COUNT(*) AS c FROM hits WHERE \"SearchPhrase\" <> '' GROUP BY \"SearchEngineID\", \"SearchPhrase\" ORDER BY c DESC LIMIT 10;",
+      "response": [
+        { "SearchEngineID": 2, "SearchPhrase": "карелки", "c": 46258 },
+        {
+          "SearchEngineID": 2,
+          "SearchPhrase": "мангу в зарабей грама",
+          "c": 18871
+        },
+        { "SearchEngineID": 2, "SearchPhrase": "смотреть онлайн", "c": 16905 },
+        { "SearchEngineID": 3, "SearchPhrase": "албатрутдин", "c": 16748 },
+        {
+          "SearchEngineID": 2,
+          "SearchPhrase": "смотреть онлайн бесплатно",
+          "c": 14909
+        },
+        { "SearchEngineID": 2, "SearchPhrase": "албатрутдин", "c": 13716 },
+        { "SearchEngineID": 2, "SearchPhrase": "экзоидные", "c": 13414 },
+        { "SearchEngineID": 2, "SearchPhrase": "смотреть", "c": 13108 },
+        { "SearchEngineID": 3, "SearchPhrase": "карелки", "c": 12815 },
+        { "SearchEngineID": 2, "SearchPhrase": "дружке помещение", "c": 11946 }
+      ]
+    },
+    {
+      "query": "SELECT \"UserID\", COUNT(*) FROM hits GROUP BY \"UserID\" ORDER BY COUNT(*) DESC LIMIT 10;",
+      "response": [
+        { "UserID": 1313338681122956954, "count(*)": 29097 },
+        { "UserID": 1907779576417363396, "count(*)": 25333 },
+        { "UserID": 2305303682471783379, "count(*)": 10597 },
+        { "UserID": 7982623143712728547, "count(*)": 7584 },
+        { "UserID": 6018350421959114808, "count(*)": 6678 },
+        { "UserID": 7280399273658728997, "count(*)": 6411 },
+        { "UserID": 1090981537032625727, "count(*)": 6197 },
+        { "UserID": 5730251990344211405, "count(*)": 6019 },
+        { "UserID": 835157184735512989, "count(*)": 5211 },
+        { "UserID": 770542365400669095, "count(*)": 4906 }
+      ]
+    },
+    {
+      "query": "SELECT \"UserID\", \"SearchPhrase\", COUNT(*) FROM hits GROUP BY \"UserID\", \"SearchPhrase\" ORDER BY COUNT(*) DESC LIMIT 10;",
+      "response": [
+        {
+          "UserID": 1313338681122956954,
+          "SearchPhrase": "",
+          "count(*)": 29097
+        },
+        {
+          "UserID": 1907779576417363396,
+          "SearchPhrase": "",
+          "count(*)": 25333
+        },
+        {
+          "UserID": 2305303682471783379,
+          "SearchPhrase": "",
+          "count(*)": 10597
+        },
+        { "UserID": 7982623143712728547, "SearchPhrase": "", "count(*)": 6669 },
+        { "UserID": 7280399273658728997, "SearchPhrase": "", "count(*)": 6408 },
+        { "UserID": 1090981537032625727, "SearchPhrase": "", "count(*)": 6196 },
+        { "UserID": 5730251990344211405, "SearchPhrase": "", "count(*)": 6019 },
+        { "UserID": 6018350421959114808, "SearchPhrase": "", "count(*)": 5990 },
+        { "UserID": 835157184735512989, "SearchPhrase": "", "count(*)": 5209 },
+        { "UserID": 770542365400669095, "SearchPhrase": "", "count(*)": 4906 }
+      ]
+    },
+    {
+      "query": "SELECT \"UserID\", \"SearchPhrase\", COUNT(*) FROM hits GROUP BY \"UserID\", \"SearchPhrase\" LIMIT 10;",
+      "response": []
+    },
+    {
+      "query": "SELECT \"UserID\", extract(minute FROM to_timestamp_seconds(\"EventTime\")) AS m, \"SearchPhrase\", COUNT(*) FROM hits GROUP BY \"UserID\", m, \"SearchPhrase\" ORDER BY COUNT(*) DESC LIMIT 10;",
+      "response": []
+    },
+    {
+      "query": "SELECT \"UserID\" FROM hits WHERE \"UserID\" = 435090932899640449;",
+      "response": [
+        { "UserID": 435090932899640449 },
+        { "UserID": 435090932899640449 },
+        { "UserID": 435090932899640449 },
+        { "UserID": 435090932899640449 }
+      ]
+    },
+    {
+      "query": "SELECT COUNT(*) FROM hits WHERE \"URL\" LIKE '%google%';",
+      "response": [{ "count(*)": 15911 }]
+    },
+    {
+      "query": "SELECT \"SearchPhrase\", MIN(\"URL\"), COUNT(*) AS c FROM hits WHERE \"URL\" LIKE '%google%' AND \"SearchPhrase\" <> '' GROUP BY \"SearchPhrase\" ORDER BY c DESC LIMIT 10;",
+      "response": [
+        {
+          "SearchPhrase": "прокур горбуши",
+          "min(hits.URL)": "http://smeshariki.ru/googleTBR%26ad",
+          "c": 60
+        },
+        {
+          "SearchPhrase": "римском качественны for cry",
+          "min(hits.URL)": "http:%2F%2Fwwww.googlead&aktional",
+          "c": 24
+        },
+        {
+          "SearchPhrase": "стоит похуден",
+          "min(hits.URL)": "http://smeshariki.ru/index.ua/doc/22229/googlead%26aktion=2&input_bdsmpeople.ru/real-estate=0&state=2013070519381",
+          "c": 23
+        },
+        {
+          "SearchPhrase": "испанч боб новости дейская",
+          "min(hits.URL)": "http://smeshariki.ru/recipes/show/6840872&trafkey=6d0fc12c54059/loukhaAUXI&where=all&filter/Mitsubishi/google",
+          "c": 21
+        },
+        {
+          "SearchPhrase": "прокур готовки видеоэндоменя",
+          "min(hits.URL)": "http://smeshariki.ru/googleTBR%26ad",
+          "c": 14
+        },
+        {
+          "SearchPhrase": "прокур гипоаллеры",
+          "min(hits.URL)": "http://smeshariki.ru/googleTBR%26ad",
+          "c": 11
+        },
+        {
+          "SearchPhrase": "камедицинск автомобильних условодки на в крем",
+          "min(hits.URL)": "http://video.yandex.php?com=google.ru/arts/searchAutoSearch",
+          "c": 9
+        },
+        {
+          "SearchPhrase": "универ 11.6/1366x768/4096mb ddressary of thing",
+          "min(hits.URL)": "http://smeshariki.ru/index.ua/syllanet.ru/business/hotels.turizm.ru/igooglead%26ar_sliceid%3D1216629/0/&&puid2=15&lo=http",
+          "c": 8
+        },
+        {
+          "SearchPhrase": "вспомню о названы монстэр",
+          "min(hits.URL)": "http://tienskaia-moda-zhienskaia-obl.irr.ru/ch/google-c-38208",
+          "c": 7
+        },
+        {
+          "SearchPhrase": "купить трудовані резюме мертный дина кабинский лежит заднее устан",
+          "min(hits.URL)": "http://video.yandex.php?com=google.ru/arts/searchAutoSearch",
+          "c": 7
+        }
+      ]
+    },
+    {
+      "query": "SELECT \"SearchPhrase\", MIN(\"URL\"), MIN(\"Title\"), COUNT(*) AS c, COUNT(DISTINCT \"UserID\") FROM hits WHERE \"Title\" LIKE '%Google%' AND \"URL\" NOT LIKE '%.google.%' AND \"SearchPhrase\" <> '' GROUP BY \"SearchPhrase\" ORDER BY c DESC LIMIT 10;",
+      "response": [
+        {
+          "SearchPhrase": "винки медведь смотреть фильмы 2013 смотреть",
+          "min(hits.URL)": "http://smeshariki.ru/a-folder-4/#page-3.2.1; WOW64; Edition=1&input_action=2011/page_type=profiles/88436/currency",
+          "min(hits.Title)": "видеорегионалу Google",
+          "c": 801,
+          "count(distinct hits.UserID)": 600
+        },
+        {
+          "SearchPhrase": "секретарь оверка все серии порт",
+          "min(hits.URL)": "http://kinopoisk.ru/a-albums_scroll_to_auto_id=227&option/vacancies/liver.ru/cgi-bin/click.cgi%3Fsid%3D158197%26ad",
+          "min(hits.Title)": "@дневники Google Player 1.2.5 л,",
+          "c": 214,
+          "count(distinct hits.UserID)": 182
+        },
+        {
+          "SearchPhrase": "винки медведь смотреть фильмы чеческия",
+          "min(hits.URL)": "http://smeshariki.ru/a-folder-4/#page-3.2.1; WOW64; Edition=1&input_action=2013-topy%2Fproduct_price_ot=&price",
+          "min(hits.Title)": "видеорегионалу Gooddock hotmail Google на толстовая комфорталенны Berlingo по давлений",
+          "c": 138,
+          "count(distinct hits.UserID)": 121
+        },
+        {
+          "SearchPhrase": "игры для дер блич",
+          "min(hits.URL)": "http://kinopoisk.ru/a-albums_scroll_to_auto_id=363064472354&lb_id=1559843",
+          "min(hits.Title)": "Легко на купить автозаврам телась Google Anaissage_599-61 «Оверлок колепный рецепт: Твери",
+          "c": 114,
+          "count(distinct hits.UserID)": 106
+        },
+        {
+          "SearchPhrase": "винки медведь смотреть объятный ветерин",
+          "min(hits.URL)": "http://smeshariki.ru/a-folder-4/#page-3.2.1; WOW64; Edition=1&input_age17/#page/Jeep,Lexus/rodimomu_vsegoddelki.ru/carbuznyj-90472-0-014031818%26height%3D901634571",
+          "min(hits.Title)": "видеорегионалу Google - Доставщиков и актрическая",
+          "c": 102,
+          "count(distinct hits.UserID)": 85
+        },
+        {
+          "SearchPhrase": "кино 2009) смотреть онлайн бессмерти мк в россипед",
+          "min(hits.URL)": "http://domchelove.ru/#!/search/page",
+          "min(hits.Title)": "Далее о коллекции в GIMI LANCIA 0K3Y318104 продать Google, go-go в регистрии — Мой Крым",
+          "c": 90,
+          "count(distinct hits.UserID)": 70
+        },
+        {
+          "SearchPhrase": "винки медведь смотреть",
+          "min(hits.URL)": "http://smeshariki.ru/a-folder-4/#page-3.2.1; WOW64; Edition=1&input_active/?do=showCampState/renatzija-na-brietielkakh%2F&ti=С",
+          "min(hits.Title)": "видеорегионалу Google - модного языке - Пульс",
+          "c": 87,
+          "count(distinct hits.UserID)": 56
+        },
+        {
+          "SearchPhrase": "тайны избавитель в владимира для университет масляться",
+          "min(hits.URL)": "http://smeshariki.ru/a-folder=cars/article=199980150195,0.107736/detail.aspx#location=search?text=asc&maxyear=2001216629%26sob%3D3159&input_who1=1&cid=577&oki=1&op_product_id=25&pvno=2&evlg=VC,2;VL",
+          "min(hits.Title)": "Амитин обувь - Яндекс.Видео+текст песен Google.com",
+          "c": 64,
+          "count(distinct hits.UserID)": 56
+        },
+        {
+          "SearchPhrase": "коптимиквиды юриста с роуз рая",
+          "min(hits.URL)": "https://produkty%2Fpulove.ru/booklyattion-war-sinij-9182/women",
+          "min(hits.Title)": "Легко на участные участников., Цены - Стильная парнем. Саганрог догадения : Турции, купить у 10 дне кольные машинки не представки - Новая с избиение спродажа: котята 2014 г.в. Цена: 47500-10ECO060 – -------- купить квартиру Оренбург (России Galantrax Flamiliada Google, Nо 18 фотоконверк Супер Кардиган",
+          "c": 45,
+          "count(distinct hits.UserID)": 12
+        },
+        {
+          "SearchPhrase": "винки медведь смотрейлера начальник",
+          "min(hits.URL)": "http://smeshariki.ru/a-folder-4/#page-3.2.1; WOW64; Edition=1&input_active/",
+          "min(hits.Title)": "видеорегионалу Google - модных Челябинск",
+          "c": 40,
+          "count(distinct hits.UserID)": 35
+        }
+      ]
+    },
+    {
+      "query": "SELECT * FROM hits WHERE \"URL\" LIKE '%google%' ORDER BY to_timestamp_seconds(\"EventTime\") LIMIT 10;",
+      "response": [
+        {
+          "WatchID": 7675678523794456216,
+          "JavaEnable": 1,
+          "Title": "Glavnaya gorand. Цветные объявлений районе, вером",
+          "GoodEvent": 1,
+          "EventTime": 1372708869,
+          "EventDate": 15888,
+          "CounterID": 64469,
+          "ClientIP": 1840073959,
+          "RegionID": 2,
+          "UserID": 3714843517822510735,
+          "CounterClass": 0,
+          "OS": 44,
+          "UserAgent": 5,
+          "URL": "http://e96.ru/search/page.googleTBR%26ad%3D0%26rnd%3D158197%26anbietersburg",
+          "Referer": "http://bdsmpeople.ru/obrazom_position/?page",
+          "IsRefresh": 0,
+          "RefererCategoryID": 13593,
+          "RefererRegionID": 158,
+          "URLCategoryID": 13606,
+          "URLRegionID": 216,
+          "ResolutionWidth": 1638,
+          "ResolutionHeight": 1658,
+          "ResolutionDepth": 22,
+          "FlashMajor": 15,
+          "FlashMinor": 7,
+          "FlashMinor2": 700,
+          "NetMajor": 0,
+          "NetMinor": 0,
+          "UserAgentMajor": 22,
+          "UserAgentMinor": "nA",
+          "CookieEnable": 1,
+          "JavascriptEnable": 1,
+          "IsMobile": 0,
+          "MobilePhone": 0,
+          "MobilePhoneModel": "",
+          "Params": "",
+          "IPNetworkID": 4005373,
+          "TraficSourceID": -1,
+          "SearchEngineID": 0,
+          "SearchPhrase": "",
+          "AdvEngineID": 0,
+          "IsArtifical": 0,
+          "WindowClientWidth": 1052,
+          "WindowClientHeight": 775,
+          "ClientTimeZone": 135,
+          "ClientEventTime": 1372760422,
+          "SilverlightVersion1": 0,
+          "SilverlightVersion2": 0,
+          "SilverlightVersion3": 0,
+          "SilverlightVersion4": 0,
+          "PageCharset": "windows",
+          "CodeVersion": 1601,
+          "IsLink": 0,
+          "IsDownload": 0,
+          "IsNotBounce": 0,
+          "FUniqID": 0,
+          "OriginalURL": "",
+          "HID": 213893614,
+          "IsOldCounter": 0,
+          "IsEvent": 0,
+          "IsParameter": 0,
+          "DontCountHits": 0,
+          "WithHash": 0,
+          "HitColor": 6,
+          "LocalEventTime": 1372766291,
+          "Age": 0,
+          "Sex": 0,
+          "Income": 0,
+          "Interests": 0,
+          "Robotness": 0,
+          "RemoteIP": 1412515749,
+          "WindowName": 63522,
+          "OpenerName": -1,
+          "HistoryLength": 12,
+          "BrowserLanguage": "S0",
+          "BrowserCountry": "�",
+          "SocialNetwork": 0,
+          "SocialAction": 0,
+          "HTTPError": 0,
+          "SendTiming": 0,
+          "DNSTiming": 0,
+          "ConnectTiming": 0,
+          "ResponseStartTiming": 445,
+          "ResponseEndTiming": 1234,
+          "FetchTiming": 0,
+          "SocialSourceNetworkID": 0,
+          "SocialSourcePage": 0,
+          "ParamPrice": 0,
+          "ParamOrderID": "",
+          "ParamCurrency": "NH",
+          "ParamCurrencyID": 0,
+          "OpenstatServiceName": "",
+          "OpenstatCampaignID": "",
+          "OpenstatAdID": "",
+          "OpenstatSourceID": "",
+          "UTMSource": "",
+          "UTMMedium": "",
+          "UTMCampaign": "",
+          "UTMContent": "",
+          "UTMTerm": "",
+          "FromTag": "",
+          "HasGCLID": 0,
+          "RefererHash": 5972490271588207794,
+          "URLHash": 1369713899219085694,
+          "CLID": 0
+        }
+      ]
+    },
+    {
+      "query": "SELECT \"SearchPhrase\" FROM hits WHERE \"SearchPhrase\" <> '' ORDER BY to_timestamp_seconds(\"EventTime\") LIMIT 10;",
+      "response": [
+        { "SearchPhrase": "симптомы регистратов" },
+        { "SearchPhrase": "galaxy s4 zoom фильм" },
+        { "SearchPhrase": "ночно китая женщины" },
+        { "SearchPhrase": "фильм небольшой бизнеса североятно" },
+        { "SearchPhrase": "расписание мультиварка для" },
+        { "SearchPhrase": "анапа оперевянные волшебную" },
+        { "SearchPhrase": "скачать читалию в духовке" },
+        {
+          "SearchPhrase": "слон.руб., д. а.л. конфигурды по оргатства мультет"
+        },
+        { "SearchPhrase": "отдыха чем прокат" },
+        { "SearchPhrase": "брита ганам котлы на шерлок" }
+      ]
+    },
+    {
+      "query": "SELECT \"SearchPhrase\" FROM hits WHERE \"SearchPhrase\" <> '' ORDER BY \"SearchPhrase\" LIMIT 10;",
+      "response": [
+        { "SearchPhrase": "береж" },
+        { "SearchPhrase": "за русский стил видео какой" },
+        { "SearchPhrase": "завод тандалищные прода" },
+        { "SearchPhrase": "заочное по земли в обрезни и метро" },
+        { "SearchPhrase": "заочное сад цены нарощения музыка визу" },
+        { "SearchPhrase": "зве" },
+        { "SearchPhrase": "земные огурцы раб" },
+        { "SearchPhrase": "золотой сайт samsung" },
+        { "SearchPhrase": "прав" },
+        { "SearchPhrase": "светы женске 2 сезон" }
+      ]
+    },
+    {
+      "query": "SELECT \"SearchPhrase\" FROM hits WHERE \"SearchPhrase\" <> '' ORDER BY to_timestamp_seconds(\"EventTime\"), \"SearchPhrase\" LIMIT 10;",
+      "response": [
+        { "SearchPhrase": "galaxy s4 zoom фильм" },
+        { "SearchPhrase": "ночно китая женщины" },
+        { "SearchPhrase": "симптомы регистратов" },
+        { "SearchPhrase": "фильм небольшой бизнеса североятно" },
+        { "SearchPhrase": "авом констеть ребенка краево" },
+        { "SearchPhrase": "анапа оперевянные волшебную" },
+        { "SearchPhrase": "брита ганам котлы на шерлок" },
+        { "SearchPhrase": "компьютерапии серия нарий" },
+        { "SearchPhrase": "отдыха чем прокат" },
+        { "SearchPhrase": "расписание мультиварка для" }
+      ]
+    },
+    {
+      "query": "SELECT \"CounterID\", AVG(length(\"URL\")) AS l, COUNT(*) AS c FROM hits WHERE \"URL\" <> '' GROUP BY \"CounterID\" HAVING COUNT(*) > 100000 ORDER BY l DESC LIMIT 25;",
+      "response": [
+        { "CounterID": 233773, "l": 453.1628285069236, "c": 2938865 },
+        { "CounterID": 245438, "l": 261.55616482670234, "c": 2510103 },
+        { "CounterID": 122612, "l": 230.68442591186866, "c": 3574007 },
+        { "CounterID": 234004, "l": 198.08936562473812, "c": 238660 },
+        { "CounterID": 1634, "l": 187.9562693941447, "c": 323229 },
+        { "CounterID": 786, "l": 180.36009889818135, "c": 120528 },
+        { "CounterID": 114157, "l": 139.11823037965326, "c": 216408 },
+        { "CounterID": 515, "l": 123.96623033619909, "c": 146907 },
+        { "CounterID": 256004, "l": 121.86100672243644, "c": 858171 },
+        { "CounterID": 95427, "l": 116.91921850037136, "c": 374306 },
+        { "CounterID": 199550, "l": 106.89180332891429, "c": 7115413 },
+        { "CounterID": 220992, "l": 103.7586784846365, "c": 494614 },
+        { "CounterID": 196239, "l": 95.01398682515553, "c": 163797 },
+        { "CounterID": 96948, "l": 92.1134607276574, "c": 396093 },
+        { "CounterID": 62, "l": 91.9427013479645, "c": 738150 },
+        { "CounterID": 188878, "l": 90.26380938339348, "c": 311998 },
+        { "CounterID": 249603, "l": 90.00957407022646, "c": 120325 },
+        { "CounterID": 3922, "l": 85.88640117723921, "c": 8527069 },
+        { "CounterID": 191697, "l": 85.03551145479048, "c": 124664 },
+        { "CounterID": 97467, "l": 82.76263550290444, "c": 131178 },
+        { "CounterID": 186300, "l": 82.05937991006292, "c": 802561 },
+        { "CounterID": 230962, "l": 74.73223497987863, "c": 169223 },
+        { "CounterID": 77639, "l": 74.65631730856313, "c": 253961 },
+        { "CounterID": 146891, "l": 74.13011535042938, "c": 605286 },
+        { "CounterID": 38, "l": 73.96797959706166, "c": 507770 }
+      ]
+    },
+    {
+      "query": "SELECT REGEXP_REPLACE(Referer, '^https?://(?:www\\.)?([^/]+)/.*$', '\\1') AS k, AVG(length(Referer)) AS l, COUNT(*) AS c, MIN(Referer) FROM hits WHERE Referer <> '' GROUP BY k HAVING COUNT(*) > 100000 ORDER BY l DESC LIMIT 25;",
+      "response": []
+    },
+    {
+      "query": "SELECT SUM(\"ResolutionWidth\"), SUM(\"ResolutionWidth\" + 1), SUM(\"ResolutionWidth\" + 2), SUM(\"ResolutionWidth\" + 3), SUM(\"ResolutionWidth\" + 4), SUM(\"ResolutionWidth\" + 5), SUM(\"ResolutionWidth\" + 6), SUM(\"ResolutionWidth\" + 7), SUM(\"ResolutionWidth\" + 8), SUM(\"ResolutionWidth\" + 9), SUM(\"ResolutionWidth\" + 10), SUM(\"ResolutionWidth\" + 11), SUM(\"ResolutionWidth\" + 12), SUM(\"ResolutionWidth\" + 13), SUM(\"ResolutionWidth\" + 14), SUM(\"ResolutionWidth\" + 15), SUM(\"ResolutionWidth\" + 16), SUM(\"ResolutionWidth\" + 17), SUM(\"ResolutionWidth\" + 18), SUM(\"ResolutionWidth\" + 19), SUM(\"ResolutionWidth\" + 20), SUM(\"ResolutionWidth\" + 21), SUM(\"ResolutionWidth\" + 22), SUM(\"ResolutionWidth\" + 23), SUM(\"ResolutionWidth\" + 24), SUM(\"ResolutionWidth\" + 25), SUM(\"ResolutionWidth\" + 26), SUM(\"ResolutionWidth\" + 27), SUM(\"ResolutionWidth\" + 28), SUM(\"ResolutionWidth\" + 29), SUM(\"ResolutionWidth\" + 30), SUM(\"ResolutionWidth\" + 31), SUM(\"ResolutionWidth\" + 32), SUM(\"ResolutionWidth\" + 33), SUM(\"ResolutionWidth\" + 34), SUM(\"ResolutionWidth\" + 35), SUM(\"ResolutionWidth\" + 36), SUM(\"ResolutionWidth\" + 37), SUM(\"ResolutionWidth\" + 38), SUM(\"ResolutionWidth\" + 39), SUM(\"ResolutionWidth\" + 40), SUM(\"ResolutionWidth\" + 41), SUM(\"ResolutionWidth\" + 42), SUM(\"ResolutionWidth\" + 43), SUM(\"ResolutionWidth\" + 44), SUM(\"ResolutionWidth\" + 45), SUM(\"ResolutionWidth\" + 46), SUM(\"ResolutionWidth\" + 47), SUM(\"ResolutionWidth\" + 48), SUM(\"ResolutionWidth\" + 49), SUM(\"ResolutionWidth\" + 50), SUM(\"ResolutionWidth\" + 51), SUM(\"ResolutionWidth\" + 52), SUM(\"ResolutionWidth\" + 53), SUM(\"ResolutionWidth\" + 54), SUM(\"ResolutionWidth\" + 55), SUM(\"ResolutionWidth\" + 56), SUM(\"ResolutionWidth\" + 57), SUM(\"ResolutionWidth\" + 58), SUM(\"ResolutionWidth\" + 59), SUM(\"ResolutionWidth\" + 60), SUM(\"ResolutionWidth\" + 61), SUM(\"ResolutionWidth\" + 62), SUM(\"ResolutionWidth\" + 63), SUM(\"ResolutionWidth\" + 64), SUM(\"ResolutionWidth\" + 65), SUM(\"ResolutionWidth\" + 66), SUM(\"ResolutionWidth\" + 67), SUM(\"ResolutionWidth\" + 68), SUM(\"ResolutionWidth\" + 69), SUM(\"ResolutionWidth\" + 70), SUM(\"ResolutionWidth\" + 71), SUM(\"ResolutionWidth\" + 72), SUM(\"ResolutionWidth\" + 73), SUM(\"ResolutionWidth\" + 74), SUM(\"ResolutionWidth\" + 75), SUM(\"ResolutionWidth\" + 76), SUM(\"ResolutionWidth\" + 77), SUM(\"ResolutionWidth\" + 78), SUM(\"ResolutionWidth\" + 79), SUM(\"ResolutionWidth\" + 80), SUM(\"ResolutionWidth\" + 81), SUM(\"ResolutionWidth\" + 82), SUM(\"ResolutionWidth\" + 83), SUM(\"ResolutionWidth\" + 84), SUM(\"ResolutionWidth\" + 85), SUM(\"ResolutionWidth\" + 86), SUM(\"ResolutionWidth\" + 87), SUM(\"ResolutionWidth\" + 88), SUM(\"ResolutionWidth\" + 89) FROM hits;",
+      "response": [
+        {
+          "sum(hits.ResolutionWidth)": 151345005230,
+          "sum(hits.ResolutionWidth + 1)": 151445002727,
+          "sum(hits.ResolutionWidth + 2)": 151545000224,
+          "sum(hits.ResolutionWidth + 3)": 151644997721,
+          "sum(hits.ResolutionWidth + 4)": 151744995218,
+          "sum(hits.ResolutionWidth + 5)": 151844992715,
+          "sum(hits.ResolutionWidth + 6)": 151944990212,
+          "sum(hits.ResolutionWidth + 7)": 152044987709,
+          "sum(hits.ResolutionWidth + 8)": 152144985206,
+          "sum(hits.ResolutionWidth + 9)": 152244982703,
+          "sum(hits.ResolutionWidth + 10)": 152344980200,
+          "sum(hits.ResolutionWidth + 11)": 152444977697,
+          "sum(hits.ResolutionWidth + 12)": 152544975194,
+          "sum(hits.ResolutionWidth + 13)": 152644972691,
+          "sum(hits.ResolutionWidth + 14)": 152744970188,
+          "sum(hits.ResolutionWidth + 15)": 152844967685,
+          "sum(hits.ResolutionWidth + 16)": 152944965182,
+          "sum(hits.ResolutionWidth + 17)": 153044962679,
+          "sum(hits.ResolutionWidth + 18)": 153144960176,
+          "sum(hits.ResolutionWidth + 19)": 153244957673,
+          "sum(hits.ResolutionWidth + 20)": 153344955170,
+          "sum(hits.ResolutionWidth + 21)": 153444952667,
+          "sum(hits.ResolutionWidth + 22)": 153544950164,
+          "sum(hits.ResolutionWidth + 23)": 153644947661,
+          "sum(hits.ResolutionWidth + 24)": 153744945158,
+          "sum(hits.ResolutionWidth + 25)": 153844942655,
+          "sum(hits.ResolutionWidth + 26)": 153944940152,
+          "sum(hits.ResolutionWidth + 27)": 154044937649,
+          "sum(hits.ResolutionWidth + 28)": 154144935146,
+          "sum(hits.ResolutionWidth + 29)": 154244932643,
+          "sum(hits.ResolutionWidth + 30)": 154344930140,
+          "sum(hits.ResolutionWidth + 31)": 154444927637,
+          "sum(hits.ResolutionWidth + 32)": 154544925134,
+          "sum(hits.ResolutionWidth + 33)": 154644922631,
+          "sum(hits.ResolutionWidth + 34)": 154744920128,
+          "sum(hits.ResolutionWidth + 35)": 154844917625,
+          "sum(hits.ResolutionWidth + 36)": 154944915122,
+          "sum(hits.ResolutionWidth + 37)": 155044912619,
+          "sum(hits.ResolutionWidth + 38)": 155144910116,
+          "sum(hits.ResolutionWidth + 39)": 155244907613,
+          "sum(hits.ResolutionWidth + 40)": 155344905110,
+          "sum(hits.ResolutionWidth + 41)": 155444902607,
+          "sum(hits.ResolutionWidth + 42)": 155544900104,
+          "sum(hits.ResolutionWidth + 43)": 155644897601,
+          "sum(hits.ResolutionWidth + 44)": 155744895098,
+          "sum(hits.ResolutionWidth + 45)": 155844892595,
+          "sum(hits.ResolutionWidth + 46)": 155944890092,
+          "sum(hits.ResolutionWidth + 47)": 156044887589,
+          "sum(hits.ResolutionWidth + 48)": 156144885086,
+          "sum(hits.ResolutionWidth + 49)": 156244882583,
+          "sum(hits.ResolutionWidth + 50)": 156344880080,
+          "sum(hits.ResolutionWidth + 51)": 156444877577,
+          "sum(hits.ResolutionWidth + 52)": 156544875074,
+          "sum(hits.ResolutionWidth + 53)": 156644872571,
+          "sum(hits.ResolutionWidth + 54)": 156744870068,
+          "sum(hits.ResolutionWidth + 55)": 156844867565,
+          "sum(hits.ResolutionWidth + 56)": 156944865062,
+          "sum(hits.ResolutionWidth + 57)": 157044862559,
+          "sum(hits.ResolutionWidth + 58)": 157144860056,
+          "sum(hits.ResolutionWidth + 59)": 157244857553,
+          "sum(hits.ResolutionWidth + 60)": 157344855050,
+          "sum(hits.ResolutionWidth + 61)": 157444852547,
+          "sum(hits.ResolutionWidth + 62)": 157544850044,
+          "sum(hits.ResolutionWidth + 63)": 157644847541,
+          "sum(hits.ResolutionWidth + 64)": 157744845038,
+          "sum(hits.ResolutionWidth + 65)": 157844842535,
+          "sum(hits.ResolutionWidth + 66)": 157944840032,
+          "sum(hits.ResolutionWidth + 67)": 158044837529,
+          "sum(hits.ResolutionWidth + 68)": 158144835026,
+          "sum(hits.ResolutionWidth + 69)": 158244832523,
+          "sum(hits.ResolutionWidth + 70)": 158344830020,
+          "sum(hits.ResolutionWidth + 71)": 158444827517,
+          "sum(hits.ResolutionWidth + 72)": 158544825014,
+          "sum(hits.ResolutionWidth + 73)": 158644822511,
+          "sum(hits.ResolutionWidth + 74)": 158744820008,
+          "sum(hits.ResolutionWidth + 75)": 158844817505,
+          "sum(hits.ResolutionWidth + 76)": 158944815002,
+          "sum(hits.ResolutionWidth + 77)": 159044812499,
+          "sum(hits.ResolutionWidth + 78)": 159144809996,
+          "sum(hits.ResolutionWidth + 79)": 159244807493,
+          "sum(hits.ResolutionWidth + 80)": 159344804990,
+          "sum(hits.ResolutionWidth + 81)": 159444802487,
+          "sum(hits.ResolutionWidth + 82)": 159544799984,
+          "sum(hits.ResolutionWidth + 83)": 159644797481,
+          "sum(hits.ResolutionWidth + 84)": 159744794978,
+          "sum(hits.ResolutionWidth + 85)": 159844792475,
+          "sum(hits.ResolutionWidth + 86)": 159944789972,
+          "sum(hits.ResolutionWidth + 87)": 160044787469,
+          "sum(hits.ResolutionWidth + 88)": 160144784966,
+          "sum(hits.ResolutionWidth + 89)": 160244782463
+        }
+      ]
+    },
+    {
+      "query": "SELECT \"SearchEngineID\", \"ClientIP\", COUNT(*) AS c, SUM(\"IsRefresh\"), AVG(\"ResolutionWidth\") FROM hits WHERE \"SearchPhrase\" <> '' GROUP BY \"SearchEngineID\", \"ClientIP\" ORDER BY c DESC LIMIT 10;",
+      "response": [
+        {
+          "SearchEngineID": 2,
+          "ClientIP": 1138507705,
+          "c": 1633,
+          "sum(hits.IsRefresh)": 35,
+          "avg(hits.ResolutionWidth)": 1408.0122473974282
+        },
+        {
+          "SearchEngineID": 2,
+          "ClientIP": 1740861572,
+          "c": 1331,
+          "sum(hits.IsRefresh)": 28,
+          "avg(hits.ResolutionWidth)": 1577.945905334335
+        },
+        {
+          "SearchEngineID": 2,
+          "ClientIP": -807147100,
+          "c": 1144,
+          "sum(hits.IsRefresh)": 35,
+          "avg(hits.ResolutionWidth)": 1553.1984265734266
+        },
+        {
+          "SearchEngineID": 2,
+          "ClientIP": -497906719,
+          "c": 1140,
+          "sum(hits.IsRefresh)": 36,
+          "avg(hits.ResolutionWidth)": 1543.4140350877192
+        },
+        {
+          "SearchEngineID": 2,
+          "ClientIP": -1945757555,
+          "c": 1105,
+          "sum(hits.IsRefresh)": 30,
+          "avg(hits.ResolutionWidth)": 1557.387330316742
+        },
+        {
+          "SearchEngineID": 2,
+          "ClientIP": -1870623097,
+          "c": 1102,
+          "sum(hits.IsRefresh)": 31,
+          "avg(hits.ResolutionWidth)": 1555.6588021778584
+        },
+        {
+          "SearchEngineID": 2,
+          "ClientIP": -631062503,
+          "c": 1083,
+          "sum(hits.IsRefresh)": 31,
+          "avg(hits.ResolutionWidth)": 1581.8171745152354
+        },
+        {
+          "SearchEngineID": 2,
+          "ClientIP": -465813166,
+          "c": 1082,
+          "sum(hits.IsRefresh)": 30,
+          "avg(hits.ResolutionWidth)": 1541.253234750462
+        },
+        {
+          "SearchEngineID": 2,
+          "ClientIP": -1743596151,
+          "c": 1080,
+          "sum(hits.IsRefresh)": 24,
+          "avg(hits.ResolutionWidth)": 1559.8092592592593
+        },
+        {
+          "SearchEngineID": 2,
+          "ClientIP": -265917476,
+          "c": 1058,
+          "sum(hits.IsRefresh)": 32,
+          "avg(hits.ResolutionWidth)": 1556.2003780718337
+        }
+      ]
+    },
+    {
+      "query": "SELECT \"WatchID\", \"ClientIP\", COUNT(*) AS c, SUM(\"IsRefresh\"), AVG(\"ResolutionWidth\") FROM hits WHERE \"SearchPhrase\" <> '' GROUP BY \"WatchID\", \"ClientIP\" ORDER BY c DESC LIMIT 10;",
+      "response": [
+        {
+          "WatchID": 8552395030277055010,
+          "ClientIP": 1915204244,
+          "c": 1,
+          "sum(hits.IsRefresh)": 0,
+          "avg(hits.ResolutionWidth)": 1996.0
+        },
+        {
+          "WatchID": 8032257478827968944,
+          "ClientIP": -1808170151,
+          "c": 1,
+          "sum(hits.IsRefresh)": 0,
+          "avg(hits.ResolutionWidth)": 1368.0
+        },
+        {
+          "WatchID": 9127363327184079005,
+          "ClientIP": 1997963053,
+          "c": 1,
+          "sum(hits.IsRefresh)": 0,
+          "avg(hits.ResolutionWidth)": 1828.0
+        },
+        {
+          "WatchID": 6227034649967062911,
+          "ClientIP": 1613931788,
+          "c": 1,
+          "sum(hits.IsRefresh)": 0,
+          "avg(hits.ResolutionWidth)": 1087.0
+        },
+        {
+          "WatchID": 5967694626148577393,
+          "ClientIP": 1901761973,
+          "c": 1,
+          "sum(hits.IsRefresh)": 0,
+          "avg(hits.ResolutionWidth)": 1996.0
+        },
+        {
+          "WatchID": 9104969147573201866,
+          "ClientIP": 1945522631,
+          "c": 1,
+          "sum(hits.IsRefresh)": 0,
+          "avg(hits.ResolutionWidth)": 1368.0
+        },
+        {
+          "WatchID": 7244153296068007677,
+          "ClientIP": -1227195938,
+          "c": 1,
+          "sum(hits.IsRefresh)": 0,
+          "avg(hits.ResolutionWidth)": 1368.0
+        },
+        {
+          "WatchID": 7789048302407315605,
+          "ClientIP": 1955638032,
+          "c": 1,
+          "sum(hits.IsRefresh)": 0,
+          "avg(hits.ResolutionWidth)": 1087.0
+        },
+        {
+          "WatchID": 8447465914752539347,
+          "ClientIP": 1055111774,
+          "c": 1,
+          "sum(hits.IsRefresh)": 0,
+          "avg(hits.ResolutionWidth)": 1638.0
+        },
+        {
+          "WatchID": 5671934170600643926,
+          "ClientIP": 124395956,
+          "c": 1,
+          "sum(hits.IsRefresh)": 0,
+          "avg(hits.ResolutionWidth)": 1368.0
+        }
+      ]
+    },
+    {
+      "query": "SELECT \"WatchID\", \"ClientIP\", COUNT(*) AS c, SUM(\"IsRefresh\"), AVG(\"ResolutionWidth\") FROM hits GROUP BY \"WatchID\", \"ClientIP\" ORDER BY c DESC LIMIT 10;",
+      "response": []
+    },
+    {
+      "query": "SELECT URL, COUNT(*) AS c FROM hits GROUP BY \"URL\" ORDER BY c DESC LIMIT 10;",
+      "response": []
+    },
+    {
+      "query": "SELECT 1, URL, COUNT(*) AS c FROM hits GROUP BY 1, \"URL\" ORDER BY c DESC LIMIT 10;",
+      "response": []
+    },
+    {
+      "query": "SELECT \"ClientIP\", \"ClientIP\" - 1, \"ClientIP\" - 2, \"ClientIP\" - 3, COUNT(*) AS c FROM hits GROUP BY \"ClientIP\", \"ClientIP\" - 1, \"ClientIP\" - 2, \"ClientIP\" - 3 ORDER BY c DESC LIMIT 10;",
+      "response": [
+        {
+          "ClientIP": -39921974,
+          "hits.ClientIP - Int64(1)": -39921975,
+          "hits.ClientIP - Int64(2)": -39921976,
+          "hits.ClientIP - Int64(3)": -39921977,
+          "c": 47008
+        },
+        {
+          "ClientIP": -1698104457,
+          "hits.ClientIP - Int64(1)": -1698104458,
+          "hits.ClientIP - Int64(2)": -1698104459,
+          "hits.ClientIP - Int64(3)": -1698104460,
+          "c": 29121
+        },
+        {
+          "ClientIP": -1175819552,
+          "hits.ClientIP - Int64(1)": -1175819553,
+          "hits.ClientIP - Int64(2)": -1175819554,
+          "hits.ClientIP - Int64(3)": -1175819555,
+          "c": 25333
+        },
+        {
+          "ClientIP": 1696638182,
+          "hits.ClientIP - Int64(1)": 1696638181,
+          "hits.ClientIP - Int64(2)": 1696638180,
+          "hits.ClientIP - Int64(3)": 1696638179,
+          "c": 20220
+        },
+        {
+          "ClientIP": 1138507705,
+          "hits.ClientIP - Int64(1)": 1138507704,
+          "hits.ClientIP - Int64(2)": 1138507703,
+          "hits.ClientIP - Int64(3)": 1138507702,
+          "c": 15778
+        },
+        {
+          "ClientIP": -927025522,
+          "hits.ClientIP - Int64(1)": -927025523,
+          "hits.ClientIP - Int64(2)": -927025524,
+          "hits.ClientIP - Int64(3)": -927025525,
+          "c": 12768
+        },
+        {
+          "ClientIP": -1262139876,
+          "hits.ClientIP - Int64(1)": -1262139877,
+          "hits.ClientIP - Int64(2)": -1262139878,
+          "hits.ClientIP - Int64(3)": -1262139879,
+          "c": 11348
+        },
+        {
+          "ClientIP": 1740861572,
+          "hits.ClientIP - Int64(1)": 1740861571,
+          "hits.ClientIP - Int64(2)": 1740861570,
+          "hits.ClientIP - Int64(3)": 1740861569,
+          "c": 11314
+        },
+        {
+          "ClientIP": -807147100,
+          "hits.ClientIP - Int64(1)": -807147101,
+          "hits.ClientIP - Int64(2)": -807147102,
+          "hits.ClientIP - Int64(3)": -807147103,
+          "c": 9880
+        },
+        {
+          "ClientIP": -631062503,
+          "hits.ClientIP - Int64(1)": -631062504,
+          "hits.ClientIP - Int64(2)": -631062505,
+          "hits.ClientIP - Int64(3)": -631062506,
+          "c": 9718
+        }
+      ]
+    },
+    {
+      "query": "SELECT URL, COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"DontCountHits\" = 0 AND \"IsRefresh\" = 0 AND \"URL\" <> '' GROUP BY \"URL\" ORDER BY \"PageViews\" DESC LIMIT 10;",
+      "response": [
+        {
+          "URL": "http://irr.ru/index.php?showalbum/login-leniya7777294,938303130",
+          "pageviews": 102341
+        },
+        { "URL": "http://komme%2F27.0.1453.116", "pageviews": 51218 },
+        {
+          "URL": "http://irr.ru/index.php?showalbum/login-kapusta-advert2668]=0&order_by=0",
+          "pageviews": 18315
+        },
+        {
+          "URL": "http://irr.ru/index.php?showalbum/login-kapustic/product_name",
+          "pageviews": 16461
+        },
+        { "URL": "http://irr.ru/index.php", "pageviews": 12577 },
+        {
+          "URL": "http://irr.ru/index.php?showalbum/login",
+          "pageviews": 10880
+        },
+        {
+          "URL": "http://komme%2F27.0.1453.116 Safari%2F5.0 (compatible; MSIE 9.0;",
+          "pageviews": 7627
+        },
+        {
+          "URL": "http://irr.ru/index.php?showalbum/login-kupalnik",
+          "pageviews": 4369
+        },
+        {
+          "URL": "http://irr.ru/index.php?showalbum/login-kapusta-advert27256.html_params",
+          "pageviews": 4058
+        },
+        { "URL": "http://komme%2F27.0.1453.116 Safari", "pageviews": 3021 }
+      ]
+    },
+    {
+      "query": "SELECT \"Title\", COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"DontCountHits\" = 0 AND \"IsRefresh\" = 0 AND \"Title\" <> '' GROUP BY \"Title\" ORDER BY \"PageViews\" DESC LIMIT 10;",
+      "response": [
+        { "Title": "Тест (Россия) - Яндекс", "pageviews": 122407 },
+        {
+          "Title": "Шарарай), Выбрать! - обсуждаются на голд: Шоубиз - Свободная историс",
+          "pageviews": 82935
+        },
+        { "Title": "Приморск - IRR.ru", "pageviews": 80958 },
+        {
+          "Title": "Брюки New Era H (Асус) 258 общая выплаток, горшечными",
+          "pageviews": 39098
+        },
+        { "Title": "Теплоску на", "pageviews": 23123 },
+        {
+          "Title": "Dave and Hotpoint sport – самые вещие",
+          "pageviews": 14329
+        },
+        { "Title": "AUTO.ria.ua ™ - Аппер", "pageviews": 14053 },
+        { "Title": "Приморск (Россия) - Яндекс.Видео", "pageviews": 13912 },
+        { "Title": "OWAProfessign), продать", "pageviews": 10919 },
+        { "Title": "Труси - Шоубиз", "pageviews": 10157 }
+      ]
+    },
+    {
+      "query": "SELECT \"URL\", COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"IsRefresh\" = 0 AND \"IsLink\" <> 0 AND \"IsDownload\" = 0 GROUP BY \"URL\" ORDER BY \"PageViews\" DESC LIMIT 10 OFFSET 1000;",
+      "response": [
+        {
+          "URL": "http://stalker-pub-20087898675494,960948/#page_type%3D260117152337&spn=1395,94558/page.aspx#location=search=0&color=0&auto_ria=0&type=category_id=66&pt=b&pd=8&pw=6&pw=2&pv=23&prr=1",
+          "pageviews": 2
+        },
+        {
+          "URL": "http://kurort.html%3Fhtml",
+          "pageviews": 2
+        },
+        {
+          "URL": "http://smeshariki.ru/karabika",
+          "pageviews": 2
+        },
+        {
+          "URL": "http://zarplata.ru/?p=126711-recept-Grecheniya.html?1=1&city&custom%3D1216629/0/&&puid1",
+          "pageviews": 2
+        },
+        {
+          "URL": "http://love.ru/forums",
+          "pageviews": 2
+        },
+        {
+          "URL": "http://amobil.ru/talks",
+          "pageviews": 2
+        },
+        {
+          "URL": "http://clubqashqai.ru/furniturer13",
+          "pageviews": 2
+        },
+        {
+          "URL": "http://auto_id=577",
+          "pageviews": 2
+        },
+        {
+          "URL": "http://kompre",
+          "pageviews": 2
+        },
+        {
+          "URL": "http://afisha.yandex.php?f",
+          "pageviews": 2
+        }
+      ]
+    },
+    {
+      "query": "SELECT \"TraficSourceID\", \"SearchEngineID\", \"AdvEngineID\", CASE WHEN (\"SearchEngineID\" = 0 AND \"AdvEngineID\" = 0) THEN Referer ELSE '' END AS \"Src\", \"URL\" AS Dst, COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"IsRefresh\" = 0 GROUP BY \"TraficSourceID\", \"SearchEngineID\", \"AdvEngineID\", \"Src\", \"Dst\" ORDER BY \"PageViews\" DESC LIMIT 10 OFFSET 1000;",
+      "response": [
+        {
+          "TraficSourceID": -1,
+          "SearchEngineID": 0,
+          "AdvEngineID": 0,
+          "src": "http://state=19945206/foto-4/login-2006/makumirostova.ru/ch/floore troubleclick=bests/?date",
+          "dst": "http://irr.ru/index.php?showalbum/login-leniya7777294,938303130",
+          "pageviews": 15
+        },
+        {
+          "TraficSourceID": -1,
+          "SearchEngineID": 0,
+          "AdvEngineID": 0,
+          "src": "http://state=19945206/foto-4/login-2491724/?bundlers/search?text",
+          "dst": "http://irr.ru/index.php?showalbum/login-kapusta-advert2678&op_page=60000/currency=RUR/hasimage=3",
+          "pageviews": 15
+        },
+        {
+          "TraficSourceID": 1,
+          "SearchEngineID": 0,
+          "AdvEngineID": 0,
+          "src": "http://mysw.info/node/215455&text",
+          "dst": "http://irr.ru/index.php?showalbum/login-3284][11]=6625f3634571&state=0&expand_search=0&damagecache/wm/2013&price_do=50000&page/1772,903742726108784&op_uid",
+          "pageviews": 15
+        },
+        {
+          "TraficSourceID": 5,
+          "SearchEngineID": 0,
+          "AdvEngineID": 0,
+          "src": "http://kinopoisk.ru/yandex.ru/auto/69363",
+          "dst": "http:%2F%2Fwwwwww.bonprix.ru/myAccountry",
+          "pageviews": 15
+        },
+        {
+          "TraficSourceID": -1,
+          "SearchEngineID": 0,
+          "AdvEngineID": 0,
+          "src": "http://state=19945206/foto-4/loginskikh-viana.irr.ru/GameMain.aspx?sle=1/house.ru/yandsearch?text=все серии&sa=t&rct=j&q=аэратор&item.aspx?sort_key=9582&text=meiz/Stoimost-iAQ4MyP5gLAD&url=wwww.migom.by/?crnd=59039395&op_category_id=&maxprice=2&state=200&custom=0&doorov_i_magicbay.ru/moscow/90/incidential/BuyCongrad.irr.ru/men.aspx?group_cod_1s=1680&bpp=6&currency=RUR/keywords=блокарнизе 2000024879166191/offe.aspx",
+          "dst": "http://irr.ru/index.php?showalbum/login-kapusta-advertist/?act=full&Form.aspx?group_cod",
+          "pageviews": 15
+        },
+        {
+          "TraficSourceID": 0,
+          "SearchEngineID": 0,
+          "AdvEngineID": 0,
+          "src": "",
+          "dst": "http://irr.ru/index.php?showalbum/login-4433140796851/detail/536180&all=False&issearch/price",
+          "pageviews": 15
+        },
+        {
+          "TraficSourceID": -1,
+          "SearchEngineID": 0,
+          "AdvEngineID": 0,
+          "src": "http://state=19945206/foto-4/login-2491724/?bundlers/search?text",
+          "dst": "http://irr.ru/index.php?showalbum/login-kapusta-advert27265484158197%26width%3D728%26height%3D43",
+          "pageviews": 15
+        },
+        {
+          "TraficSourceID": -1,
+          "SearchEngineID": 0,
+          "AdvEngineID": 0,
+          "src": "http://state=19945206/foto-4/login-2491724/?bundlers/search?text",
+          "dst": "http://irr.ru/index.php?showalbum/login-kapusta-advertsiensmed.ru/olga4272980&with_photo=0&with",
+          "pageviews": 15
+        },
+        {
+          "TraficSourceID": -1,
+          "SearchEngineID": 0,
+          "AdvEngineID": 0,
+          "src": "http://state=19945206/foto-4/login-2006/makumiroshoowbiz/photo=450&with_photo=700758&brand had art&pagead2",
+          "dst": "http://irr.ru/index.php?showalbum/login-lential/secondary/details9.html_params%3Drhost%3D43%26bt%3D41%26url%3Dhttp://trashbox.ru/a-albumshowbiz/photo.kiev.ua/auto.ria.ua/auto.ria.ua/sfynkcioner.ru/filmId=model=0&saledParam=0&under_credit=0&che_sistana/tm.pulscend/telefon-A48A-F40EFF22-pro-rassiysk.irr.ru/search",
+          "pageviews": 15
+        },
+        {
+          "TraficSourceID": -1,
+          "SearchEngineID": 0,
+          "AdvEngineID": 0,
+          "src": "http://state=19945206/foto-4/login-2491724/?bundlers/search?text",
+          "dst": "http://irr.ru/index.php?showalbum/login-kapusta-advert26406956/?_h=search/roomer/rnd/event=big&marka",
+          "pageviews": 15
+        }
+      ]
+    },
+    {
+      "query": "SELECT \"URLHash\", \"EventDate\"::DATE, COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"IsRefresh\" = 0 AND \"TraficSourceID\" IN (-1, 6) AND \"RefererHash\" = 3594120000172545465 GROUP BY \"URLHash\", \"EventDate\"::DATE ORDER BY \"PageViews\" DESC LIMIT 10 OFFSET 100;",
+      "response": [
+        {
+          "URLHash": 7199155066341437901,
+          "EventDate": "2013-07-15",
+          "pageviews": 27
+        },
+        {
+          "URLHash": 5520570504648279068,
+          "EventDate": "2013-07-15",
+          "pageviews": 27
+        },
+        {
+          "URLHash": 2512899255762264913,
+          "EventDate": "2013-07-15",
+          "pageviews": 26
+        },
+        {
+          "URLHash": -8505838588544217213,
+          "EventDate": "2013-07-15",
+          "pageviews": 26
+        },
+        {
+          "URLHash": -6048157399675510565,
+          "EventDate": "2013-07-15",
+          "pageviews": 25
+        },
+        {
+          "URLHash": -3611962581960090019,
+          "EventDate": "2013-07-15",
+          "pageviews": 25
+        },
+        {
+          "URLHash": -6025761452198030778,
+          "EventDate": "2013-07-15",
+          "pageviews": 25
+        },
+        {
+          "URLHash": 6943133878034238200,
+          "EventDate": "2013-07-15",
+          "pageviews": 24
+        },
+        {
+          "URLHash": 1045132364006275583,
+          "EventDate": "2013-07-15",
+          "pageviews": 24
+        },
+        {
+          "URLHash": 6976198041684576969,
+          "EventDate": "2013-07-15",
+          "pageviews": 24
+        }
+      ]
+    },
+    {
+      "query": "SELECT \"WindowClientWidth\", \"WindowClientHeight\", COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-01' AND \"EventDate\"::DATE <= '2013-07-31' AND \"IsRefresh\" = 0 AND \"DontCountHits\" = 0 AND \"URLHash\" = 2868770270353813622 GROUP BY \"WindowClientWidth\", \"WindowClientHeight\" ORDER BY \"PageViews\" DESC LIMIT 10 OFFSET 10000;",
+      "response": [
+        { "WindowClientWidth": 540, "WindowClientHeight": 711, "pageviews": 1 },
+        {
+          "WindowClientWidth": 1581,
+          "WindowClientHeight": 931,
+          "pageviews": 1
+        },
+        {
+          "WindowClientWidth": 1926,
+          "WindowClientHeight": 784,
+          "pageviews": 1
+        },
+        { "WindowClientWidth": 747, "WindowClientHeight": 374, "pageviews": 1 },
+        {
+          "WindowClientWidth": 1311,
+          "WindowClientHeight": 796,
+          "pageviews": 1
+        },
+        {
+          "WindowClientWidth": 1183,
+          "WindowClientHeight": 942,
+          "pageviews": 1
+        },
+        {
+          "WindowClientWidth": 1960,
+          "WindowClientHeight": 826,
+          "pageviews": 1
+        },
+        { "WindowClientWidth": 746, "WindowClientHeight": 497, "pageviews": 1 },
+        { "WindowClientWidth": 476, "WindowClientHeight": 374, "pageviews": 1 },
+        { "WindowClientWidth": 1473, "WindowClientHeight": 951, "pageviews": 1 }
+      ]
+    },
+    {
+      "query": "SELECT DATE_TRUNC('minute', to_timestamp_seconds(\"EventTime\")) AS M, COUNT(*) AS \"PageViews\" FROM hits WHERE \"CounterID\" = 62 AND \"EventDate\"::DATE >= '2013-07-14' AND \"EventDate\"::DATE <= '2013-07-15' AND \"IsRefresh\" = 0 AND \"DontCountHits\" = 0 GROUP BY DATE_TRUNC('minute', to_timestamp_seconds(\"EventTime\")) ORDER BY DATE_TRUNC('minute', M) LIMIT 10 OFFSET 1000;",
+      "response": [
+        { "m": "2013-07-15T12:40:00", "pageviews": 513 },
+        { "m": "2013-07-15T12:41:00", "pageviews": 457 },
+        { "m": "2013-07-15T12:42:00", "pageviews": 470 },
+        { "m": "2013-07-15T12:43:00", "pageviews": 468 },
+        { "m": "2013-07-15T12:44:00", "pageviews": 453 },
+        { "m": "2013-07-15T12:45:00", "pageviews": 462 },
+        { "m": "2013-07-15T12:46:00", "pageviews": 481 },
+        { "m": "2013-07-15T12:47:00", "pageviews": 458 },
+        { "m": "2013-07-15T12:48:00", "pageviews": 466 },
+        { "m": "2013-07-15T12:49:00", "pageviews": 467 }
+      ]
+    }
+  ]
+}
